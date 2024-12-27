@@ -1,12 +1,13 @@
 import React from 'react'
-import { Route, Routes ,useLocation} from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Content from './components/Content'
 import BestSelling from './components/Card/BestSelling'
-import Footer from './components/Footer'
 import Hoodie from './pages/Hoodie'
 import Sweatshirt from './pages/Sweatshirt'
 import Tshirt from './pages/Tshirt'
+import Cart, { CartProvider } from './components/Card/Cart'
+import Footer from './components/Footer'
 
 const products = [
   {
@@ -31,19 +32,22 @@ const products = [
 
 function Layout() {
   const location = useLocation()
+
   return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Content />} />
-        <Route path="/hoodie" element={<Hoodie />} />
-        <Route path="/sweatshirt" element={<Sweatshirt />} />
-        <Route path="/tshirt" element={<Tshirt />} />
-      </Routes>
-      {location.pathname !== '/hoodie' && location.pathname !== '/sweatshirt' && location.pathname !== '/tshirt' &&  <BestSelling products={products} />}
-      {/* <Card products={products} /> */}
-      <Footer />
-    </div>
+    <CartProvider>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Content />} />
+          <Route path="/hoodie" element={<Hoodie />} />
+          <Route path="/sweatshirt" element={<Sweatshirt />} />
+          <Route path="/tshirt" element={<Tshirt />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+        {location.pathname !== '/hoodie' && location.pathname !== '/sweatshirt' && location.pathname !== '/tshirt' && location.pathname !== '/cart' && <BestSelling products={products} />}
+        <Footer />
+      </div>
+    </CartProvider>
   )
 }
 

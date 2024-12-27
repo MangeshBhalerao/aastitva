@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <div>
       <nav className='bg-[#0E0000] text-2xl w-full h-20 text-white flex justify-between items-center border-b' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-      <h1 className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</h1>
+        <h1 className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</h1>
         <div className='hidden md:flex justify-center items-center space-x-4 m-8'>
           <RouterLink to="/" className='hover:cursor-pointer hover:underline'>Home</RouterLink>
           <div className='relative'>
@@ -32,8 +32,9 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer'>About</ScrollLink>
-          <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer'>Contact</ScrollLink>
+          <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:underline'>About</ScrollLink>
+          <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:underline'>Contact</ScrollLink>
+          <RouterLink to="/cart" className='hover:cursor-pointer hover:underline'>Cart</RouterLink>
           <button className='bg-[#AD2A2A] px-2 py-1 rounded-lg hover:bg-[#822F2F]'>LOGIN</button>
         </div>
         <div className='md:hidden flex items-center m-8'>
@@ -61,6 +62,7 @@ export default function Navbar() {
           </div>
           <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer' onClick={toggleMenu}>About</ScrollLink>
           <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer' onClick={toggleMenu}>Contact</ScrollLink>
+          <RouterLink to="/cart" className='hover:cursor-pointer' onClick={toggleMenu}>Cart</RouterLink>
           <button className='bg-[#AD2A2A] px-2 py-1 rounded-lg hover:bg-[#822F2F]' onClick={toggleMenu}>LOGIN</button>
         </div>
       )}
