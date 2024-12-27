@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='w-full h-full bg-[#822F2F] text-white p-8 md:p-12' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+    <div id='footer' className='w-full h-full bg-[#822F2F] text-white p-8 md:p-12' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
       <div className='max-w-7xl mx-auto flex flex-wrap justify-between'>
         <div className='w-full md:w-1/2 mb-8 md:mb-0'>
           <h2 className='text-3xl mb-4 text-black'>About Us</h2>
