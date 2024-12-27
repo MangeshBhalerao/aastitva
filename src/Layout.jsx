@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes ,useLocation} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Content from './components/Content'
-import Card from './components/Card/Card'
+import BestSelling from './components/Card/BestSelling'
 import Footer from './components/Footer'
 import Hoodie from './pages/Hoodie'
 import Sweatshirt from './pages/Sweatshirt'
@@ -40,7 +40,7 @@ function Layout() {
         <Route path="/sweatshirt" element={<Sweatshirt />} />
         <Route path="/tshirt" element={<Tshirt />} />
       </Routes>
-      {location.pathname !== '/hoodie' && location.pathname !== '/sweatshirt' && location.pathname !== '/tshirt' &&  <Card products={products} />}
+      {location.pathname !== '/hoodie' && location.pathname !== '/sweatshirt' && location.pathname !== '/tshirt' &&  <BestSelling products={products} />}
       {/* <Card products={products} /> */}
       <Footer />
     </div>
