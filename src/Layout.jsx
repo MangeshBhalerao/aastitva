@@ -8,6 +8,9 @@ import Sweatshirt from './pages/Sweatshirt'
 import Tshirt from './pages/Tshirt'
 import Cart, { CartProvider } from './components/Card/Cart'
 import Footer from './components/Footer'
+import F1 from './pages/HoodieCategory/F1'
+import All from './pages/HoodieCategory/All'
+import Anime from './pages/HoodieCategory/Anime'
 
 const products = [
   {
@@ -43,8 +46,11 @@ function Layout() {
           <Route path="/sweatshirt" element={<Sweatshirt />} />
           <Route path="/tshirt" element={<Tshirt />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/hoodie/all" element={<All products={products} />} />
+          <Route path="/hoodie/f1" element={<F1 products={products} />} />
+          <Route path="/hoodie/anime" element={<Anime products={products} />} />
         </Routes>
-        {location.pathname !== '/hoodie' && location.pathname !== '/sweatshirt' && location.pathname !== '/tshirt' && location.pathname !== '/cart' && <BestSelling products={products} />}
+        {location.pathname !== '/hoodie' && location.pathname !== '/sweatshirt' && location.pathname !== '/tshirt' && location.pathname !== '/cart' && location.pathname !== '/hoodie/all' && location.pathname !== '/hoodie/f1' && location.pathname !== '/hoodie/anime' && <BestSelling products={products} />}
         <Footer />
       </div>
     </CartProvider>

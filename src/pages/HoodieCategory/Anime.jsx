@@ -1,24 +1,18 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { CartContext } from './Cart'
+import React from 'react'
 
-function BestSelling({ products }) {
-  const { addToCart } = useContext(CartContext)
-
-  const handleAddToCart = (product) => {
-    addToCart(product)
-  }
+function Anime({ products }) {
+  const animeProducts = products.filter(product => product.design === 'Anime')
 
   return (
     <div className='w-full min-h-screen bg-[#500303] text-white p-4' style={{
       fontFamily: 'Bebas Neue, sans-serif',
-      backgroundImage: 'url("")',
+      backgroundImage: 'url("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExamVhNzJqODFjeWk5NmV0bDdzZTd5bGVydDRoMmxmOHA1eWN1YWk0dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26n6CwL9WAzz2GDde/giphy.webp")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
-      <h1 className='text-5xl text-center text-white font-thin mb-8'>BEST SELLING</h1>
+      <h1 className='text-5xl text-center text-white font-thin mb-8'>Anime Hoodies</h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 justify-center'>
-        {products.map((product, index) => (
+        {animeProducts.map((product, index) => (
           <div key={index} className='max-w-sm py-2 rounded overflow-hidden shadow-lg bg-black text-white m-4'>
             <div className='w-full aspect-w-1 aspect-h-1'>
               <img className='w-full h-full object-cover' src={product.image} alt={product.title} />
@@ -31,15 +25,7 @@ function BestSelling({ products }) {
             </div>
             <div className='px-6 pt-4 pb-2 flex justify-between items-center mb-2'>
               <span className='inline-block bg-red-600 rounded-full px-3 py-1 text-2xl text-white'>₹{product.price}</span>
-              <div className='flex space-x-2'>
-                <button className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'>BUY</button>
-                <button
-                  className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'
-                  onClick={() => handleAddToCart(product)}
-                >
-                  CART
-                </button>
-              </div>
+              <button className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'>BUY</button>
             </div>
           </div>
         ))}
@@ -48,4 +34,4 @@ function BestSelling({ products }) {
   )
 }
 
-export default BestSelling
+export default Anime
