@@ -25,7 +25,7 @@ export default function Navbar() {
   return (
     <div>
       <nav className='bg-[#0E0000] text-2xl w-full h-20 text-white flex justify-between items-center border-b' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-        <h1 className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</h1>
+        <RouterLink to="/" className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</RouterLink>
         <div className='hidden md:flex justify-center items-center space-x-4 m-8'>
           <RouterLink to="/" className='hover:cursor-pointer hover:underline'>Home</RouterLink>
           <div className='relative'>

@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { CartContext } from './Cart'
 
-function Card({ products }) {
+function BestSelling({ products }) {
+  const { addToCart } = useContext(CartContext)
+
+  const handleAddToCart = (product) => {
+    addToCart(product)
+  }
+
   return (
     <div className='w-full min-h-screen bg-[#500303] text-white p-4' style={{
       fontFamily: 'Bebas Neue, sans-serif',
@@ -25,7 +33,12 @@ function Card({ products }) {
               <span className='inline-block bg-red-600 rounded-full px-3 py-1 text-2xl text-white'>₹{product.price}</span>
               <div className='flex space-x-2'>
                 <button className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'>BUY</button>
-                <button className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'>CART</button>
+                <button
+                  className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'
+                  onClick={() => handleAddToCart(product)}
+                >
+                  CART
+                </button>
               </div>
             </div>
           </div>
@@ -35,4 +48,4 @@ function Card({ products }) {
   )
 }
 
-export default Card
+export default BestSelling

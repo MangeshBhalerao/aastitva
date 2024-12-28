@@ -7,7 +7,7 @@ function Login({ onClose }) {
     
         }}>
       
-      <div className="bg-[#800E13] p-8 rounded-lg shadow-lg w-96 ring-1 ring-[#bbb9b9]">
+      <div className="bg-[#800E13] p-8 rounded-lg shadow-lg w-80 ring-1 ring-[#bbb9b9] md:w-1/3">
         <h2 className="text-4xl mb-4" style={{
         }}>Login</h2>
         <form>
