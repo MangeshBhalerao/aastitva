@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../../components/Card/Cart'
+import Hoodieproducts from '../../data/Hoodieproducts'
 
-function Anime({ products }) {
-  const animeProducts = products.filter(product => product.design === 'Anime')
+function Animehoodie() {
+  const { addToCart } = useContext(CartContext)
+
+  const animeProducts = Hoodieproducts.filter(product => product.design === 'Anime')
+
+  const handleBuyNow = (product) => {
+    // Implement the buy now functionality here
+    console.log(`Buying product: ${product.title}`)
+  }
 
   return (
     <div className='w-full min-h-screen bg-[#500303] text-white p-4' style={{
@@ -25,7 +34,18 @@ function Anime({ products }) {
             </div>
             <div className='px-6 pt-4 pb-2 flex justify-between items-center mb-2'>
               <span className='inline-block bg-red-600 rounded-full px-3 py-1 text-2xl text-white'>₹{product.price}</span>
-              <button className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'>BUY</button>
+              <button 
+                className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'
+                onClick={() => addToCart(product)}
+              >
+                Cart
+              </button>
+              <button 
+                className='bg-white px-3 py-1 rounded-full text-2xl text-black ml-2'
+                onClick={() => handleBuyNow(product)}
+              >
+                Buy
+              </button>
             </div>
           </div>
         ))}
@@ -34,4 +54,4 @@ function Anime({ products }) {
   )
 }
 
-export default Anime
+export default Animehoodie

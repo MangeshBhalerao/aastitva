@@ -3,35 +3,17 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Content from './components/Content'
 import BestSelling from './components/Card/BestSelling'
-import Hoodie from './pages/Hoodie'
-import Sweatshirt from './pages/Sweatshirt'
 import Tshirt from './pages/Tshirt'
 import Cart, { CartProvider } from './components/Card/Cart'
 import Footer from './components/Footer'
-import F1 from './pages/HoodieCategory/F1'
-import All from './pages/HoodieCategory/All'
-import Anime from './pages/HoodieCategory/Anime'
-
-const products = [
-  {
-    image: 'https://admin.kaufmannstatic.com/Images/191348_black_02-T20240826015415.jpg?i=191348_black_02-T20240826015415.jpg&w=850&h=850&bgcolor=f1f1f1',
-    title: 'Product Title 1',
-    description: 'This is a description of the product 1.',
-    price: '600'
-  },
-  {
-    image: 'https://admin.kaufmannstatic.com/Images/191348_black_02-T20240826015415.jpg?i=191348_black_02-T20240826015415.jpg&w=850&h=850&bgcolor=f1f1f1',
-    title: 'Product Title 2',
-    description: 'This is a description of the product 2.',
-    price: '700'
-  },
-  {
-    image: 'https://admin.kaufmannstatic.com/Images/191348_black_02-T20240826015415.jpg?i=191348_black_02-T20240826015415.jpg&w=850&h=850&bgcolor=f1f1f1',
-    title: 'Product Title 3',
-    description: 'This is a description of the product 3.',
-    price: '800'
-  }
-]
+import Carhoodie from './pages/HoodieCategory/Carhoodie'
+import Allhoodie from './pages/HoodieCategory/Allhoodie'
+import Animehoodie from './pages/HoodieCategory/Animehoodie'
+import Allsweatshirt from './pages/SweatshirtCategory/Allsweatshirt'
+import Animesweatshirt from './pages/SweatshirtCategory/Animesweatshirt'
+import Carsweatshirt from './pages/SweatshirtCategory/Carsweatshirt'
+import Hoodieproducts from './data/Hoodieproducts'
+import Sweatshirtproducts from './data/Sweatshirtproducts'
 
 function Layout() {
   const location = useLocation()
@@ -42,15 +24,16 @@ function Layout() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Content />} />
-          <Route path="/hoodie" element={<Hoodie />} />
-          <Route path="/sweatshirt" element={<Sweatshirt />} />
           <Route path="/tshirt" element={<Tshirt />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/hoodie/all" element={<All products={products} />} />
-          <Route path="/hoodie/f1" element={<F1 products={products} />} />
-          <Route path="/hoodie/anime" element={<Anime products={products} />} />
+          <Route path="/hoodie/all" element={<Allhoodie products={Hoodieproducts} />} />
+          <Route path="/hoodie/car" element={<Carhoodie products={Hoodieproducts} />} />
+          <Route path="/hoodie/anime" element={<Animehoodie products={Hoodieproducts} />} />
+          <Route path="/sweatshirt/all" element={<Allsweatshirt products={Sweatshirtproducts} />} />
+          <Route path="/sweatshirt/car" element={<Carsweatshirt products={Sweatshirtproducts} />} />
+          <Route path="/sweatshirt/anime" element={<Animesweatshirt products={Sweatshirtproducts} />} />
         </Routes>
-        {location.pathname !== '/hoodie' && location.pathname !== '/sweatshirt' && location.pathname !== '/tshirt' && location.pathname !== '/cart' && location.pathname !== '/hoodie/all' && location.pathname !== '/hoodie/f1' && location.pathname !== '/hoodie/anime' && <BestSelling products={products} />}
+        {location.pathname !== '/hoodie' && location.pathname !== '/sweatshirt' && location.pathname !== '/tshirt' && location.pathname !== '/cart' && location.pathname !== '/hoodie/all' && location.pathname !== '/hoodie/car' && location.pathname !== '/hoodie/anime' && location.pathname !== '/sweatshirt/all' && location.pathname !== '/sweatshirt/car' && location.pathname !== '/sweatshirt/anime' && <BestSelling products={Hoodieproducts} />}
         <Footer />
       </div>
     </CartProvider>
