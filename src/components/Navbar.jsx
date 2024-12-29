@@ -118,7 +118,7 @@ export default function Navbar() {
                 <div className='relative'>
                   <button onClick={toggleSubDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Hoodie</button>
                   {isSubDropdownOpen && (
-                    <div className='absolute left-full top-0 bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
+                    <div className='absolute right-full top-0 bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
                       <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSubDropdown}>All Hoodies</RouterLink>
                       <RouterLink to="/hoodie/car" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSubDropdown}>Car</RouterLink>
                       <RouterLink to="/hoodie/anime" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSubDropdown}>Anime</RouterLink>
@@ -128,7 +128,7 @@ export default function Navbar() {
                 <div className='relative'>
                   <button onClick={toggleSweatshirtDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Sweatshirt</button>
                   {isSweatshirtDropdownOpen && (
-                    <div className='absolute left-full top-0 bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
+                    <div className='absolute right-full top-0 bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
                       <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSweatshirtDropdown}>All Sweatshirts</RouterLink>
                       <RouterLink to="/sweatshirt/car" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSweatshirtDropdown}>Car</RouterLink>
                       <RouterLink to="/sweatshirt/anime" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSweatshirtDropdown}>Anime</RouterLink>
