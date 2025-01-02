@@ -9,6 +9,7 @@ export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isSubDropdownOpen, setIsSubDropdownOpen] = useState(false)
   const [isSweatshirtDropdownOpen, setIsSweatshirtDropdownOpen] = useState(false)
+  const [isTshirtDropdownOpen, setIsTshirtDropdownOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
   const { cart } = useContext(CartContext)
 
@@ -26,6 +27,10 @@ export default function Navbar() {
 
   const toggleSweatshirtDropdown = () => {
     setIsSweatshirtDropdownOpen(!isSweatshirtDropdownOpen)
+  }
+
+  const toggleTshirtDropdown = () => {
+    setIsTshirtDropdownOpen(!isTshirtDropdownOpen)
   }
 
   const toggleLogin = () => {
@@ -47,7 +52,7 @@ export default function Navbar() {
                 <div className='relative'>
                   <button onClick={toggleSubDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Hoodie</button>
                   {isSubDropdownOpen && (
-                    <div className='absolute left-full top-0 bg-[#822F2F] text-white mt-2 rounded shadow-lg'>
+                    <div className='absolute left-full top-0 bg-[#800000] text-white mt-2 rounded shadow-lg'>
                       <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#0c0c0c]' onClick={toggleSubDropdown}>All</RouterLink>
                       <RouterLink to="/hoodie/car" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleSubDropdown}>Car</RouterLink>
                       <RouterLink to="/hoodie/anime" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleSubDropdown}>Anime</RouterLink>
@@ -55,7 +60,7 @@ export default function Navbar() {
                   )}
                 </div>
                 <div className='relative'>
-                  <button onClick={toggleSweatshirtDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Sweatshirt</button>
+                  <button onClick={toggleSweatshirtDropdown} className='block px-4 py-2 hover:bg-[#982B1C] w-full text-left'>Sweatshirt</button>
                   {isSweatshirtDropdownOpen && (
                     <div className='absolute left-full top-0 bg-[#822F2F] text-white mt-2 rounded shadow-lg'>
                       <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#0c0c0c]' onClick={toggleSweatshirtDropdown}>All</RouterLink>
@@ -64,7 +69,16 @@ export default function Navbar() {
                     </div>
                   )}
                 </div>
-                <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleDropdown}>Tshirt</RouterLink>
+                <div className='relative'>
+                  <button onClick={toggleTshirtDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Tshirt</button>
+                  {isTshirtDropdownOpen && (
+                    <div className='absolute left-full top-0 bg-[#822F2F] text-white mt-2 rounded shadow-lg'>
+                      <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#0c0c0c]' onClick={toggleTshirtDropdown}>All</RouterLink>
+                      <RouterLink to="/tshirt/anime" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleTshirtDropdown}>Anime</RouterLink>
+                      <RouterLink to="/tshirt/cartoon" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleTshirtDropdown}>Cartoon</RouterLink>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
@@ -135,7 +149,16 @@ export default function Navbar() {
                     </div>
                   )}
                 </div>
-                <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleDropdown}>Tshirt</RouterLink>
+                <div className='relative'>
+                  <button onClick={toggleTshirtDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Tshirt</button>
+                  {isTshirtDropdownOpen && (
+                    <div className='absolute right-full top-0 bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
+                      <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleTshirtDropdown}>All Tshirts</RouterLink>
+                      <RouterLink to="/tshirt/anime" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleTshirtDropdown}>Anime</RouterLink>
+                      <RouterLink to="/tshirt/cartoon" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleTshirtDropdown}>Cartoon</RouterLink>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>

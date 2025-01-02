@@ -14,14 +14,12 @@ function Footer() {
         <div className='w-full md:w-1/3 mb-8 md:mb-0'>
           <h2 className='text-3xl mb-4 text-black'>Contact Us</h2>
           <p className='text-lg'>Email: aastitva@gmail.com</p>
-          <p className='text-lg'>Phone: +123 456 7890</p>
-          <p className='text-lg'>Address: 123 Fashion Street, Style City, Country</p>
+          <a href='https://www.instagram.com/adarshhnairr/' className='text-2xl text-white hover:text-gray-300'>Instagram</a>
         </div>
 
         <div className='w-full md:w-1/3'>
           <h2 className='text-3xl mb-4 text-black'>Follow Us</h2>
           <p className='text-lg'>Stay connected with us on social media for the latest updates and promotions.</p>
-          <a href='https://www.instagram.com/adarshhnairr/' className='text-lg text-white hover:text-gray-300'>Instagram</a>
           {/* Add social media icons here */}
         </div>
       </div>
