@@ -51,6 +51,7 @@ function Layout() {
         location.pathname !== '/tshirt/all' &&
         location.pathname !== '/tshirt/car' &&
         location.pathname !== '/tshirt/anime' &&
+        location.pathname !== '/buy' &&
         <BestSelling products={Hoodieproducts} />}
         <Footer />
       </div>

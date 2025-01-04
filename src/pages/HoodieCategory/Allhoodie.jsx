@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Hoodieproducts from '../../data/Hoodieproducts'
 
 function Allhoodie() {
@@ -26,6 +27,17 @@ function Allhoodie() {
             </div>
             <div className='px-6 pt-4 pb-2 flex justify-between items-center mb-2'>
               <span className='inline-block bg-red-600 rounded-full px-3 py-1 text-2xl text-white'>₹{product.price}</span>
+              <button 
+                className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'
+                onClick={() => addToCart(product)}
+              >
+                Cart
+              </button>
+              <Link to={{ pathname: '/buy', state: { product } }}>
+                <button className='bg-white px-3 py-1 rounded-full text-2xl text-black ml-2'>
+                  Buy
+                </button>
+              </Link>
             </div>
           </div>
         ))}
