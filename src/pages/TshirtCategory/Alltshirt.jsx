@@ -38,16 +38,16 @@ function Alltshirt() {
         <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 justify-center'>
           {allProducts.map((product, index) => (
             <div key={index} className='relative max-w-sm py-2 rounded overflow-hidden shadow-lg bg-[#0D0D0D] text-white m-4'>
-              <div className='absolute top-0 left-0 w-full h-64'>
+              <div className='absolute top-0 left-0 w-full h-64' style={{zIndex:10}}>
                 <img className='w-full h-full object-cover' src={product.image} alt={product.title} />
               </div>
-              <div className='relative pt-64 px-6 py-4'>
+              <div className='relative pt-64 px-6 py-4 z-20'>
                 <div className='text-3xl mb-2 text-[#FF0000]'>{product.title}</div>
                 <p className='text-base'>
                   {product.description}
                 </p>
               </div>
-              <div className='px-6 pt-4 pb-2 flex justify-between items-center mb-2'>
+              <div className='px-6 pt-4 pb-2 flex justify-between items-center mb-2' style={{zIndex:20}}>
                 <span className='inline-block bg-[#8B0000] rounded-full px-3 py-1 text-2xl text-white'>₹{product.price}</span>
               </div>
             </div>

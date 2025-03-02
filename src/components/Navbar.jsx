@@ -7,9 +7,6 @@ import { CartContext } from './Card/Cart'
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const [isSubDropdownOpen, setIsSubDropdownOpen] = useState(false)
-  const [isSweatshirtDropdownOpen, setIsSweatshirtDropdownOpen] = useState(false)
-  const [isTshirtDropdownOpen, setIsTshirtDropdownOpen] = useState(false)
   const [isLoginOpen, setIsLoginOpen] = useState(false)
   const { cart } = useContext(CartContext)
 
@@ -21,64 +18,25 @@ export default function Navbar() {
     setIsDropdownOpen(!isDropdownOpen)
   }
 
-  const toggleSubDropdown = () => {
-    setIsSubDropdownOpen(!isSubDropdownOpen)
-  }
-
-  const toggleSweatshirtDropdown = () => {
-    setIsSweatshirtDropdownOpen(!isSweatshirtDropdownOpen)
-  }
-
-  const toggleTshirtDropdown = () => {
-    setIsTshirtDropdownOpen(!isTshirtDropdownOpen)
-  }
-
   const toggleLogin = () => {
     setIsLoginOpen(!isLoginOpen)
   }
 
   return (
     <div>
-      <nav className='bg-[#0E0000] text-2xl w-full h-20 text-white flex justify-between items-center border-b' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+      <nav className='bg-[#0E0000] text-2xl w-full h-20 text-white flex justify-between items-center border-b' style={{ fontFamily: 'Bebas Neue, sans-serif', zIndex: 100 }}>
         <RouterLink to="/" className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</RouterLink>
         <div className='hidden md:flex justify-center items-center space-x-4 m-8'>
           <RouterLink to="/" className='hover:cursor-pointer hover:underline'>Home</RouterLink>
           <div className='relative'>
-            <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A]'>
+            <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A]' style={{ zIndex: 101 }}>
               CATEGORIES
             </button>
             {isDropdownOpen && (
-              <div className='absolute bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
-                <div className='relative'>
-                  <button onClick={toggleSubDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Hoodie</button>
-                  {isSubDropdownOpen && (
-                    <div className='absolute left-full top-0 bg-[#800000] text-white mt-2 rounded shadow-lg'>
-                      <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#0c0c0c]' onClick={toggleSubDropdown}>All</RouterLink>
-                      <RouterLink to="/hoodie/car" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleSubDropdown}>Car</RouterLink>
-                      <RouterLink to="/hoodie/anime" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleSubDropdown}>Anime</RouterLink>
-                    </div>
-                  )}
-                </div>
-                <div className='relative'>
-                  <button onClick={toggleSweatshirtDropdown} className='block px-4 py-2 hover:bg-[#982B1C] w-full text-left'>Sweatshirt</button>
-                  {isSweatshirtDropdownOpen && (
-                    <div className='absolute left-full top-0 bg-[#822F2F] text-white mt-2 rounded shadow-lg'>
-                      <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#0c0c0c]' onClick={toggleSweatshirtDropdown}>All</RouterLink>
-                      <RouterLink to="/sweatshirt/car" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleSweatshirtDropdown}>Car</RouterLink>
-                      <RouterLink to="/sweatshirt/anime" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleSweatshirtDropdown}>Anime</RouterLink>
-                    </div>
-                  )}
-                </div>
-                <div className='relative'>
-                  <button onClick={toggleTshirtDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Tshirt</button>
-                  {isTshirtDropdownOpen && (
-                    <div className='absolute left-full top-0 bg-[#822F2F] text-white mt-2 rounded shadow-lg'>
-                      <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#0c0c0c]' onClick={toggleTshirtDropdown}>All</RouterLink>
-                      <RouterLink to="/tshirt/anime" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleTshirtDropdown}>Anime</RouterLink>
-                      <RouterLink to="/tshirt/cartoon" className='block px-4 py-2 hover:bg-[#1a1a1a]' onClick={toggleTshirtDropdown}>Cartoon</RouterLink>
-                    </div>
-                  )}
-                </div>
+              <div className='absolute bg-[#0E0000] text-white mt-2 rounded shadow-lg' style={{ zIndex: 100 }}>
+                <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Hoodie</RouterLink>
+                <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Sweatshirt</RouterLink>
+                <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Tshirt</RouterLink>
               </div>
             )}
           </div>
@@ -114,7 +72,7 @@ export default function Navbar() {
         </div>
       </nav>
       {isOpen && (
-        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl items-center space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50'
+        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl items-center space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-100'
         style={{ fontFamily: 'Bebas Neue, sans-serif' }}
         >
           <button onClick={toggleMenu} className='self-end p-4'>
@@ -128,42 +86,15 @@ export default function Navbar() {
               CATEGORIES
             </button>
             {isDropdownOpen && (
-              <div className='absolute bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
-                <div className='relative'>
-                  <button onClick={toggleSubDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Hoodie</button>
-                  {isSubDropdownOpen && (
-                    <div className='absolute right-full top-0 bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
-                      <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSubDropdown}>All Hoodies</RouterLink>
-                      <RouterLink to="/hoodie/car" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSubDropdown}>Car</RouterLink>
-                      <RouterLink to="/hoodie/anime" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSubDropdown}>Anime</RouterLink>
-                    </div>
-                  )}
-                </div>
-                <div className='relative'>
-                  <button onClick={toggleSweatshirtDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Sweatshirt</button>
-                  {isSweatshirtDropdownOpen && (
-                    <div className='absolute right-full top-0 bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
-                      <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSweatshirtDropdown}>All Sweatshirts</RouterLink>
-                      <RouterLink to="/sweatshirt/car" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSweatshirtDropdown}>Car</RouterLink>
-                      <RouterLink to="/sweatshirt/anime" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleSweatshirtDropdown}>Anime</RouterLink>
-                    </div>
-                  )}
-                </div>
-                <div className='relative'>
-                  <button onClick={toggleTshirtDropdown} className='block px-4 py-2 hover:bg-[#822F2F] w-full text-left'>Tshirt</button>
-                  {isTshirtDropdownOpen && (
-                    <div className='absolute right-full top-0 bg-[#0E0000] text-white mt-2 rounded shadow-lg'>
-                      <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleTshirtDropdown}>All Tshirts</RouterLink>
-                      <RouterLink to="/tshirt/anime" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleTshirtDropdown}>Anime</RouterLink>
-                      <RouterLink to="/tshirt/cartoon" className='block px-4 py-2 hover:bg-[#822F2F]' onClick={toggleTshirtDropdown}>Cartoon</RouterLink>
-                    </div>
-                  )}
-                </div>
+              <div className='absolute bg-[#0E0000] text-white mt-2 rounded shadow-lg' style={{ zIndex: 100 }}>
+                <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Hoodie</RouterLink>
+                <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Sweatshirt</RouterLink>
+                <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Tshirt</RouterLink>
               </div>
             )}
           </div>
-          <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>About</ScrollLink>
-          <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>Contact</ScrollLink>
+          <ScrollLink to="footer" smooth={true} duration={1000} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>About</ScrollLink>
+          <ScrollLink to="footer" smooth={true} duration={1000} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>Contact</ScrollLink>
         </div>
       )}
       {isLoginOpen && <Login onClose={toggleLogin} />}
