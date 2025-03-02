@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Tshirtproducts from '../../data/Tshirtproducts'
+import ProductCard from '../../components/Card/ProductCard'
 
 function Alltshirt() {
   const [priceRange, setPriceRange] = useState(1000) // Assuming 1000 is the max price
@@ -8,6 +9,16 @@ function Alltshirt() {
     ? Tshirtproducts.filter(product => product.category === 'Tshirt')
     : Tshirtproducts.filter(product => product.category === 'Tshirt' && product.price <= priceRange)
 
+  const addToCart = (product) => {
+    // Add product to cart logic here
+    console.log(`Added ${product.title} to cart`)
+  }
+
+  const buyNow = (product) => {
+    // Buy now logic here
+    console.log(`Buying ${product.title} now`)
+  }
+
   return (
     <div className='w-full min-h-screen bg-[#0D0D0D] text-white p-4' style={{
       fontFamily: 'Bebas Neue, sans-serif',
@@ -15,10 +26,9 @@ function Alltshirt() {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
-      <h1 className='text-5xl text-center text-white font-thin mb-8'>All T-Shirts</h1>
       <div className='flex'>
         <div className='w-1/4 p-4 bg-[#2F2F2F] rounded-lg' style={{ height: '100vh' }}>
-          <h2 className='text-3xl mb-4 text-[#FF0000]'>Filter by Price</h2>
+          <h2 className='text-3xl mb-4 text-[#FF0000]'>Filter</h2>
           <div className='mt-4'>
             <label htmlFor='priceRange' className='block text-2xl text-white mb-2'>Max Price: ₹{priceRange}</label>
             <input 
@@ -35,22 +45,9 @@ function Alltshirt() {
             />
           </div>
         </div>
-        <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 justify-center'>
+        <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3  justify-center'>
           {allProducts.map((product, index) => (
-            <div key={index} className='relative max-w-sm py-2 rounded overflow-hidden shadow-lg bg-[#0D0D0D] text-white m-4'>
-              <div className='absolute top-0 left-0 w-full h-64' style={{zIndex:10}}>
-                <img className='w-full h-full object-cover' src={product.image} alt={product.title} />
-              </div>
-              <div className='relative pt-64 px-6 py-4 z-20'>
-                <div className='text-3xl mb-2 text-[#FF0000]'>{product.title}</div>
-                <p className='text-base'>
-                  {product.description}
-                </p>
-              </div>
-              <div className='px-6 pt-4 pb-2 flex justify-between items-center mb-2' style={{zIndex:20}}>
-                <span className='inline-block bg-[#8B0000] rounded-full px-3 py-1 text-2xl text-white'>₹{product.price}</span>
-              </div>
-            </div>
+            <ProductCard key={index} product={product} addToCart={addToCart} buyNow={buyNow} />
           ))}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import Hoodieproducts from '../../data/Hoodieproducts'
+import ProductCard from '../../components/Card/ProductCard'
 
 function Allhoodie() {
   const [priceRange, setPriceRange] = useState(1000) // Assuming 1000 is the max price
@@ -9,6 +9,11 @@ function Allhoodie() {
     ? Hoodieproducts.filter(product => product.category === 'Hoodie')
     : Hoodieproducts.filter(product => product.category === 'Hoodie' && product.price <= priceRange)
 
+  const addToCart = (product) => {
+    // Add product to cart logic here
+    console.log(`Added ${product.title} to cart`)
+  }
+
   return (
     <div className='w-full min-h-screen bg-[#0D0D0D] text-white p-4' style={{
       fontFamily: 'Bebas Neue, sans-serif',
@@ -16,10 +21,9 @@ function Allhoodie() {
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
-      <h1 className='text-5xl text-center text-white font-thin mb-8'>All Hoodies</h1>
-      <div className='flex'>
-        <div className='w-1/4 p-4 bg-[#2F2F2F] rounded-lg' style={{ height: '100vh' }}>
-          <h2 className='text-3xl mb-4 text-[#FF0000]'>Filter by Price</h2>
+      <div className='flex  '>
+        <div className='w-1/4 p-4 bg-[#2F2F2F] rounded-lg mt-3' style={{ height: '100vh' }}>
+          <h2 className='text-3xl mb-4 text-[#FF0000]'>Filters</h2>
           <div className='mt-4'>
             <label htmlFor='priceRange' className='block text-2xl text-white mb-2'>Max Price: ₹{priceRange}</label>
             <input 
@@ -36,33 +40,9 @@ function Allhoodie() {
             />
           </div>
         </div>
-        <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 justify-center'>
+        <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 justify-center'>
           {filteredProducts.map((product, index) => (
-            <div key={index} className='relative max-w-sm py-2 rounded overflow-hidden shadow-lg bg-[#0D0D0D] text-white m-4'>
-              <div className='absolute top-0 left-0 w-full h-64 overflow-hidden z-10'>
-                <img className='w-full h-full object-cover' src={product.image} alt={product.title} />
-              </div>
-              <div className='relative pt-64 px-6 py-4 z-20'>
-                <div className='text-3xl mb-2 text-[#FF0000]'>{product.title}</div>
-                <p className='text-base'>
-                  {product.description}
-                </p>
-              </div>
-              <div className='px-6 pt-4 pb-2 flex justify-between items-center mb-2 z-20'>
-                <span className='inline-block bg-[#8B0000] rounded-full px-3 py-1 text-2xl text-white'>₹{product.price}</span>
-                <button 
-                  className='bg-[#FF0000] px-3 py-1 rounded-full text-2xl text-white'
-                  onClick={() => addToCart(product)}
-                >
-                  Cart
-                </button>
-                <Link to={{ pathname: '/buy', state: { product } }}>
-                  <button className='bg-white px-3 py-1 rounded-full text-2xl text-black ml-2'>
-                    Buy
-                  </button>
-                </Link>
-              </div>
-            </div>
+            <ProductCard key={index} product={product} addToCart={addToCart} />
           ))}
         </div>
       </div>
