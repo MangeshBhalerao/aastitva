@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Sweatshirtproducts from '../../data/Sweatshirtproducts'
 import ProductCard from '../../components/Card/ProductCard'
+import Filter from '../../components/Card/Filter'
 
 function Allsweatshirt() {
   const [priceRange, setPriceRange] = useState(1000) // Assuming 1000 is the max price
@@ -22,64 +23,13 @@ function Allsweatshirt() {
       backgroundPosition: 'center',
     }}>
       <div className='flex'>
-        <div className='w-1/4 p-4 bg-[#2F2F2F] rounded-lg' style={{ height: '100vh' }}>
-          <h2 className='text-3xl mb-4 text-[#FF0000]'>Filter</h2>
-          <div className='mt-4'>
-            <label htmlFor='priceRange' className='block text-2xl text-white mb-2'>Max Price: ₹{priceRange}</label>
-            <input 
-              type='range' 
-              id='priceRange' 
-              min='0' 
-              max='1000' 
-              value={priceRange} 
-              onChange={(e) => setPriceRange(e.target.value)} 
-              className='w-full price-slider'
-              style={{
-                background: `linear-gradient(to right, #FF0000 ${priceRange / 10}%, #d3d3d3 ${priceRange / 10}%)`
-              }}
-            />
-          </div>
-        </div>
+        <Filter priceRange={priceRange} setPriceRange={setPriceRange} />
         <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 justify-center'>
           {allProducts.map((product, index) => (
             <ProductCard key={index} product={product} addToCart={addToCart} />
           ))}
         </div>
       </div>
-      <style jsx>{`
-        .price-slider {
-          -webkit-appearance: none;
-          width: 100%;
-          height: 10px;
-          background: #d3d3d3;
-          border-radius: 5px; /* Curve the ends */
-          outline: none;
-          opacity: 0.7;
-          transition: opacity .2s;
-        }
-
-        .price-slider:hover {
-          opacity: 1;
-        }
-
-        .price-slider::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 25px;
-          height: 25px;
-          background: #FF0000;
-          cursor: pointer;
-          border-radius: 50%; /* Make the thumb circular */
-        }
-
-        .price-slider::-moz-range-thumb {
-          width: 25px;
-          height: 25px;
-          background: #FF0000;
-          cursor: pointer;
-          border-radius: 50%; /* Make the thumb circular */
-        }
-      `}</style>
     </div>
   )
 }

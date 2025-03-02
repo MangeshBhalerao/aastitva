@@ -28,7 +28,7 @@ const Hoodieproducts = [
   },
   {
     id: 4,
-    image: 'https://thesagacity.s3.ap-south-1.amazonaws.com/media/TOji_new_1.jpg_hohQz0s.webp',
+    image: 'https://onefortee.com/cdn/shop/files/WhatsAppImage2024-10-15at20.38.49_0a7adc58.jpg?v=1729005043',
     title: 'Anime Hoodie 2',
     description: 'This is a description of Anime Hoodie 2.',
     price: '700',
