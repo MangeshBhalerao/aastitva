@@ -5,30 +5,42 @@ import Login from './Card/Login'
 import { CartContext } from './Card/Cart'
 
 export default function Navbar() {
+  // State to manage the visibility of the mobile menu
   const [isOpen, setIsOpen] = useState(false)
+  // State to manage the visibility of the dropdown menu
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  // State to manage the visibility of the login modal
   const [isLoginOpen, setIsLoginOpen] = useState(false)
+  // Context to get the cart items
   const { cart } = useContext(CartContext)
 
+  // Function to toggle the mobile menu
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
 
+  // Function to toggle the dropdown menu
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen)
   }
 
+  // Function to toggle the login modal
   const toggleLogin = () => {
     setIsLoginOpen(!isLoginOpen)
   }
 
   return (
     <div>
+      {/* Navbar */}
       <nav className='bg-[#0E0000] text-2xl w-full h-20 text-white flex justify-between items-center border-b' style={{ fontFamily: 'Bebas Neue, sans-serif', zIndex: 1000 }}>
+        {/* Logo */}
         <RouterLink to="/" className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</RouterLink>
+        
+        {/* Desktop Menu */}
         <div className='hidden md:flex justify-center items-center space-x-4 m-8'>
           <RouterLink to="/" className='hover:cursor-pointer hover:underline'>Home</RouterLink>
           <div className='relative'>
+            {/* Categories Dropdown */}
             <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A]' style={{ zIndex: 1001 }}>
               CATEGORIES
             </button>
@@ -43,6 +55,8 @@ export default function Navbar() {
           <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:underline'>About</ScrollLink>
           <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:underline'>Contact</ScrollLink>
         </div>
+        
+        {/* Desktop Cart and Login */}
         <div className='hidden md:flex items-center space-x-4 m-8'>
           {cart.length > 0 && (
             <RouterLink to="/cart" className='relative hover:cursor-pointer hover:underline' style={{ color: 'white' }}>
@@ -54,6 +68,8 @@ export default function Navbar() {
           )}
           <button className='bg-[#AD2A2A] px-2 py-1 rounded-lg hover:bg-[#822F2F]' onClick={toggleLogin}>LOGIN</button>
         </div>
+        
+        {/* Mobile Menu Button */}
         <div className='md:hidden flex items-center space-x-4 m-8'>
           {cart.length > 0 && (
             <RouterLink to="/cart" className='relative hover:cursor-pointer hover:underline' style={{ color: 'white' }}>
@@ -71,10 +87,10 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
+      
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl items-center space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-2000'
-        style={{ fontFamily: 'Bebas Neue, sans-serif' }}
-        >
+        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl items-center space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-2000' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
           <button onClick={toggleMenu} className='self-end p-4'>
             <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M6 18L18 6M6 6l12 12'></path>
@@ -97,6 +113,8 @@ export default function Navbar() {
           <ScrollLink to="footer" smooth={true} duration={1000} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>Contact</ScrollLink>
         </div>
       )}
+      
+      {/* Login Modal */}
       {isLoginOpen && <Login onClose={toggleLogin} />}
     </div>
   )
