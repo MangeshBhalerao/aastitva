@@ -24,16 +24,16 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className='bg-[#0E0000] text-2xl w-full h-20 text-white flex justify-between items-center border-b' style={{ fontFamily: 'Bebas Neue, sans-serif', zIndex: 100 }}>
+      <nav className='bg-[#0E0000] text-2xl w-full h-20 text-white flex justify-between items-center border-b' style={{ fontFamily: 'Bebas Neue, sans-serif', zIndex: 1000 }}>
         <RouterLink to="/" className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</RouterLink>
         <div className='hidden md:flex justify-center items-center space-x-4 m-8'>
           <RouterLink to="/" className='hover:cursor-pointer hover:underline'>Home</RouterLink>
           <div className='relative'>
-            <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A]' style={{ zIndex: 101 }}>
+            <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A]' style={{ zIndex: 1001 }}>
               CATEGORIES
             </button>
             {isDropdownOpen && (
-              <div className='absolute bg-[#0E0000] text-white mt-2 rounded shadow-lg' style={{ zIndex: 100 }}>
+              <div className='absolute bg-[#0E0000] text-white mt-2 rounded shadow-lg' style={{ zIndex: 1000 }}>
                 <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Hoodie</RouterLink>
                 <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Sweatshirt</RouterLink>
                 <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Tshirt</RouterLink>
@@ -72,7 +72,7 @@ export default function Navbar() {
         </div>
       </nav>
       {isOpen && (
-        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl items-center space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-100'
+        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl items-center space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-2000'
         style={{ fontFamily: 'Bebas Neue, sans-serif' }}
         >
           <button onClick={toggleMenu} className='self-end p-4'>
@@ -86,7 +86,7 @@ export default function Navbar() {
               CATEGORIES
             </button>
             {isDropdownOpen && (
-              <div className='absolute bg-[#0E0000] text-white mt-2 rounded shadow-lg' style={{ zIndex: 100 }}>
+              <div className='absolute bg-[#0E0000] text-white mt-2 rounded shadow-lg' style={{ zIndex: 2000 }}>
                 <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Hoodie</RouterLink>
                 <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Sweatshirt</RouterLink>
                 <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleDropdown}>Tshirt</RouterLink>

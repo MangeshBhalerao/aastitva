@@ -21,8 +21,9 @@ function Allhoodie() {
       backgroundImage: 'url("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExamVhNzJqODFjeWk5NmV0bDdzZTd5bGVydDRoMmxmOHA1eWN1YWk0dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26n6CwL9WAzz2GDde/giphy.webp")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
+      zIndex: 1
     }}>
-      <div className='flex'>
+      <div className='flex' style={{zIndex:10}}>
         <Filter priceRange={priceRange} setPriceRange={setPriceRange} />
         <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 justify-center'>
           {filteredProducts.map((product, index) => (
