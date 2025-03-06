@@ -6,7 +6,6 @@ import Filter from '../../components/Card/Filter'
 function Allhoodie() {
   const [priceRange, setPriceRange] = useState(1000) // Assuming 1000 is the max price
   const [sortOrder, setSortOrder] = useState('lowToHigh') // Default sort order
-  const [showFilter, setShowFilter] = useState(false) // State to toggle filter visibility on mobile
 
   const filteredProducts = priceRange === 1000 
     ? Hoodieproducts.filter(product => product.category === 'Hoodie')
@@ -33,22 +32,9 @@ function Allhoodie() {
       backgroundPosition: 'center',
       zIndex: 1
     }}>
-      <div className='flex flex-col md:flex-row' style={{ zIndex: 10 }}>
-        {/* Filter Button for Mobile */}
-        <button 
-          className='md:hidden bg-[#AD2A2A] text-white py-2 px-4 rounded-lg mb-4'
-          onClick={() => setShowFilter(!showFilter)}
-        >
-          {showFilter ? 'Hide Filters' : 'Show Filters'}
-        </button>
-
-        {/* Filter Component */}
-        <div className={`w-full md:w-1/4 p-4 bg-[#000000] rounded-lg mt-3 ${showFilter ? 'block' : 'hidden'} md:block`} style={{ height: '100vh' }}>
-          <Filter priceRange={priceRange} setPriceRange={setPriceRange} sortOrder={sortOrder} setSortOrder={setSortOrder} />
-        </div>
-
-        {/* Product Grid */}
-        <div className='w-full md:w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 justify-center'>
+      <div className='flex' style={{ zIndex: 10 }}>
+        <Filter priceRange={priceRange} setPriceRange={setPriceRange} sortOrder={sortOrder} setSortOrder={setSortOrder} />
+        <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 justify-center'>
           {sortedProducts.map((product, index) => (
             <ProductCard key={index} product={product} addToCart={addToCart} />
           ))}
