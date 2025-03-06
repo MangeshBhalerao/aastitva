@@ -5,10 +5,19 @@ import Filter from '../../components/Card/Filter'
 
 function Allhoodie() {
   const [priceRange, setPriceRange] = useState(1000) // Assuming 1000 is the max price
+  const [sortOrder, setSortOrder] = useState('lowToHigh') // Default sort order
 
   const filteredProducts = priceRange === 1000 
     ? Hoodieproducts.filter(product => product.category === 'Hoodie')
     : Hoodieproducts.filter(product => product.category === 'Hoodie' && product.price <= priceRange)
+
+  const sortedProducts = filteredProducts.sort((a, b) => {
+    if (sortOrder === 'lowToHigh') {
+      return a.price - b.price
+    } else {
+      return b.price - a.price
+    }
+  })
 
   const addToCart = (product) => {
     // Add product to cart logic here
@@ -23,10 +32,10 @@ function Allhoodie() {
       backgroundPosition: 'center',
       zIndex: 1
     }}>
-      <div className='flex' style={{zIndex:10}}>
-        <Filter priceRange={priceRange} setPriceRange={setPriceRange} />
+      <div className='flex' style={{ zIndex: 10 }}>
+        <Filter priceRange={priceRange} setPriceRange={setPriceRange} sortOrder={sortOrder} setSortOrder={setSortOrder} />
         <div className='w-3/4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 justify-center'>
-          {filteredProducts.map((product, index) => (
+          {sortedProducts.map((product, index) => (
             <ProductCard key={index} product={product} addToCart={addToCart} />
           ))}
         </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Filter = ({ priceRange, setPriceRange }) => {
+const Filter = ({ priceRange, setPriceRange, sortOrder, setSortOrder }) => {
   return (
     <div className='w-1/4 p-4 bg-[#000000] rounded-lg mt-3' style={{ height: '100vh' }}>
       <h2 className='text-3xl mb-4 text-[#AD2A2A] border-b-2'>Filters</h2>
@@ -18,6 +18,20 @@ const Filter = ({ priceRange, setPriceRange }) => {
             background: `linear-gradient(to right, #FF0000 ${priceRange / 10}%, #d3d3d3 ${priceRange / 10}%)`
           }}
         />
+      </div>
+      <div className='mt-4'>
+        <button 
+          className={`w-full py-2 mb-2 rounded-lg ${sortOrder === 'lowToHigh' ? 'bg-[#822F2F]' : 'bg-[#AD2A2A]'} hover:bg-[#822F2F]`}
+          onClick={() => setSortOrder('lowToHigh')}
+        >
+          Price: Low to High
+        </button>
+        <button 
+          className={`w-full py-2 rounded-lg ${sortOrder === 'highToLow' ? 'bg-[#822F2F]' : 'bg-[#AD2A2A]'} hover:bg-[#822F2F]`}
+          onClick={() => setSortOrder('highToLow')}
+        >
+          Price: High to Low
+        </button>
       </div>
       <style jsx>{`
         .price-slider {
