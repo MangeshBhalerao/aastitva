@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { CartContext } from './Cart'
+import ProductCard from '../../components/Card/ProductCard'
 
 function BestSelling() {
   const { addToCart } = useContext(CartContext)
@@ -48,32 +49,12 @@ function BestSelling() {
       <h1 className='text-5xl text-center text-white font-thin mb-8'>BEST SELLING</h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 justify-center'>
         {products.map((product, index) => (
-          <div key={index} className='max-w-sm py-2 rounded overflow-hidden shadow-lg bg-black text-white m-4'>
-            <div className='w-full aspect-w-1 aspect-h-1'>
-              <img className='w-full h-full object-cover' src={product.image} alt={product.title} />
-            </div>
-            <div className='px-6 py-4'>
-              <div className='font-bold text-3xl mb-2 text-red-600'>{product.title}</div>
-              <p className='text-base'>
-                {product.description}
-              </p>
-            </div>
-            <div className='px-6 pt-4 pb-2 flex justify-between items-center mb-2'>
-              <span className='inline-block bg-red-600 rounded-full px-3 py-1 text-2xl text-white'>₹{product.price}</span>
-              <button 
-                className='bg-red-600 px-3 py-1 rounded-full text-2xl text-white'
-                onClick={() => handleAddToCart(product)}
-              >
-                Cart
-              </button>
-              <button 
-                className='bg-white px-3 py-1 rounded-full text-2xl text-black ml-2'
-                onClick={() => handleBuyNow(product)}
-              >
-                Buy
-              </button>
-            </div>
-          </div>
+          <ProductCard 
+            key={index} 
+            product={product} 
+            addToCart={handleAddToCart} 
+            buyNow={handleBuyNow} 
+          />
         ))}
       </div>
     </div>
