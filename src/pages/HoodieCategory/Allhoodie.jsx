@@ -30,7 +30,7 @@ function Allhoodie() {
   }
 
   return (
-    <div className='w-full min-h-screen bg-[#0D0D0D] text-white p-4' style={{
+    <div className='w-full min-h-screen bg-[#0D0D0D] text-white p-4 pt-24' style={{
       fontFamily: 'Bebas Neue, sans-serif',
       backgroundImage: 'url("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExamVhNzJqODFjeWk5NmV0bDdzZTd5bGVydDRoMmxmOHA1eWN1YWk0dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26n6CwL9WAzz2GDde/giphy.webp")',
       backgroundSize: 'cover',
