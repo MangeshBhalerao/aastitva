@@ -32,7 +32,7 @@ export default function Navbar() {
   return (
     <div>
       {/* Navbar */}
-      <nav className='bg-[#0E0000] text-2xl w-full h-20 text-white flex justify-between items-center border-b relative z-20' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+      <nav className='fixed top-0 left-0 right-0 bg-[#0E0000] bg-opacity-80 backdrop-blur-sm text-2xl w-full h-20 text-white flex justify-between items-center border-b z-20' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
         {/* Logo */}
         <RouterLink to="/" className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</RouterLink>
 
