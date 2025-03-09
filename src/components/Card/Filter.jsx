@@ -2,7 +2,7 @@ import React from 'react'
 
 const Filter = ({ priceRange, setPriceRange, sortOrder, setSortOrder }) => {
   return (
-    <div className='w-1/4 p-4 bg-[#000000] bg-opacity-70 rounded-lg mt-3 backdrop-blur-md' style={{ height: '100vh' }}>
+    <div className='w-full md:w-1/4 lg:w-1/5 xl:w-1/6 p-4 bg-[#000000] bg-opacity-70 rounded-lg mt-3 backdrop-blur-md' style={{ height: 'auto', maxHeight: '100vh', overflowY: 'auto' }}>
       <h2 className='text-3xl mb-4 text-[#AD2A2A] border-b-2'>Filters</h2>
       <div className='mt-4'>
         <label htmlFor='priceRange' className='block text-2xl text-white mb-2'>Max Price: ₹{priceRange}</label>
