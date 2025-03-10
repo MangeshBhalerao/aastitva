@@ -41,7 +41,7 @@ function Allhoodie() {
     }}>
       {/* Filter Button for Mobile */}
       <button 
-        className='md:hidden bg-[#AD2A2A] text-white py-2 px-4 rounded-lg mb-4'
+        className='md:hidden bg-[#000000] text-white py-2 px-4 rounded-lg mb-4'
         onClick={() => setShowFilter(!showFilter)}
       >
         {showFilter ? 'Hide Filters' : 'Show Filters'}
@@ -49,12 +49,12 @@ function Allhoodie() {
 
       <div className='flex flex-col md:flex-row' style={{ zIndex: 10 }}>
         {/* Filter Component */}
-        <div className={`w-full md:w-1/4 lg:w-1/5 xl:w-1/6 p-4 bg-[#000000] bg-opacity-70 rounded-lg mt-3 backdrop-blur-md ${showFilter ? 'block' : 'hidden'} md:block`} style={{ height: 'auto', maxHeight: '100vh', overflowY: 'auto' }}>
+        <div className={`w-full h-100 mt-4 md:w-1/4 lg:w-1/3 xl:w-1/4 bg-opacity-70 rounded-lg backdrop-blur-md ${showFilter ? 'block' : 'hidden'} md:block`} >
           <Filter priceRange={priceRange} setPriceRange={setPriceRange} sortOrder={sortOrder} setSortOrder={setSortOrder} />
         </div>
 
         {/* Product Grid */}
-        <div className='w-full md:w-3/4 lg:w-4/5 xl:w-5/6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 justify-center'>
+        <div className='w-full md:w-3/4 lg:w-4/5 xl:w-5/6 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 justify-center'>
           {sortedProducts.map((product, index) => (
             <ProductCard key={index} product={product} addToCart={addToCart} />
           ))}
