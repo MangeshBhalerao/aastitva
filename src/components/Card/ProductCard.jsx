@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProductCard = ({ product, addToCart }) => {
   return (
-    <div className='relative max-w-sm py-4 rounded overflow-hidden shadow-lg bg-[#0D0D0D] text-white m-4'>
+    <div className='relative max-w-sm py-4 rounded overflow-hidden shadow-lg bg-[#0D0D0D] text-white m-2 z-10'>
       <div className='absolute top-0 left-0 w-full h-64 overflow-hidden z-10'>
         <img className='w-full h-full object-cover' src={product.image} alt={product.title} />
       </div>
