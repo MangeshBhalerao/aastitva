@@ -26,6 +26,13 @@ function BestSelling() {
       title: 'Best Selling Product 3',
       description: 'This is a description of Best Selling Product 3.',
       price: '800'
+    },
+    {
+      id: 4,
+      image: 'https://thesagacity.s3.ap-south-1.amazonaws.com/media/Nerv_hoodie_back.jpg.webp',
+      title: 'Best Selling Product 3',
+      description: 'This is a description of Best Selling Product 3.',
+      price: '800'
     }
     // Add more products as needed
   ]
@@ -48,7 +55,7 @@ function BestSelling() {
       backgroundPosition: 'center',
     }}>
       <h1 className='text-5xl w-full bg-black bg-opacity-50 backdrop-blur-md p-4 rounded-xl text-center text-white font-thin mb-8'>BEST SELLING</h1>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 justify-center'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center'>
         {products.map((product, index) => (
           <ProductCard 
             key={index} 

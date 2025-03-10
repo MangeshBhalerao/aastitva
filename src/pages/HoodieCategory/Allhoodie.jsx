@@ -41,11 +41,12 @@ function Allhoodie() {
     }}>
       {/* Filter Button for Mobile */}
       <button 
-        className='md:hidden bg-[#000000] text-white py-2 px-4 rounded-lg mb-4'
+        className='md:hidden bg-[#000000] text-white text-xl py-2 px-4 rounded-md ml-4'
         onClick={() => setShowFilter(!showFilter)}
       >
-        {showFilter ? 'Hide Filters' : 'Show Filters'}
+        {showFilter ? 'Hide' : 'Filters'}
       </button>
+
 
       <div className='flex flex-col md:flex-row' style={{ zIndex: 10 }}>
         {/* Filter Component */}

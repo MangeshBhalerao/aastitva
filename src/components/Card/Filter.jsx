@@ -3,7 +3,7 @@ import React from 'react'
 // Filter component to filter products based on price range and sort order
 const Filter = ({ priceRange, setPriceRange, sortOrder, setSortOrder }) => {
   return (
-    <div className='w-full md:full lg:w-full xl:w-full h-full p-4 bg-[#000000] bg-opacity-70 rounded-lg backdrop-blur-md'>
+    <div className='w-full h-full p-4 bg-[#000000] bg-opacity-70 rounded-lg backdrop-blur-md'>
       {/* Filter heading */}
       <h2 className='text-3xl mb-4 text-[#AD2A2A] border-b-2'>Filters</h2>
       
