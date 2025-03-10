@@ -90,7 +90,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl items-center space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl items-center space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50 bg-opacity-70 backdrop-blur-xl' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
           <button onClick={toggleMenu} className='self-end p-4'>
             <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M6 18L18 6M6 6l12 12'></path>
