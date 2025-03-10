@@ -8,7 +8,7 @@ const Filter = ({ priceRange, setPriceRange, sortOrder, setSortOrder }) => {
       <h2 className='text-3xl mb-4 text-[#AD2A2A] border-b-2'>Filters</h2>
       
       {/* Price range filter */}
-      <div className='mt-4'>
+      <div>
         <label htmlFor='priceRange' className='block text-2xl text-white mb-2'>Max Price: ₹{priceRange}</label>
         <input 
           type='range' 

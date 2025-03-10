@@ -40,9 +40,8 @@ function Allsweatshirt() {
       zIndex: 1
     }}>
       {/* Filter Button for Mobile */}
-      {/* Filter Button for Mobile */}
       <button 
-        className='md:hidden bg-[#000000] bg-opacity-70 text-white text-xl py-2 px-4 rounded-md ml-4'
+        className='md:hidden bg-[#000000] bg-opacity-70 text-white text-xl py-2 px-4 rounded-md ml-2'
         onClick={() => setShowFilter(!showFilter)}
       >
         {showFilter ? 'Hide' : 'Filters'}
