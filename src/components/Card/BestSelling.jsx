@@ -47,15 +47,15 @@ function BestSelling() {
   }
 
   return (
-    <div className='w-full min-h-screen bg-[#500303] text-white p-4' style={{
+    <div className='w-full min-h-screen bg-[#500303] text-white' style={{
       fontFamily: 'Bebas Neue, sans-serif',
       backgroundImage: 'url("")',
       backgroundSize: 'cover',
       
       backgroundPosition: 'center',
     }}>
-      <h1 className='text-5xl w-full bg-black bg-opacity-50 backdrop-blur-md p-4 rounded-xl text-center text-white font-thin mb-8'>BEST SELLING</h1>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center'>
+      <h1 className='text-5xl w-full bg-black bg-opacity-70 backdrop-blur-md p-4 text-center text-white font-thin mb-8 border-t border-b'>BEST SELLING</h1>
+      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center'>
         {products.map((product, index) => (
           <ProductCard 
             key={index} 
