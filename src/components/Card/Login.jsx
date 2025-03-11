@@ -1,4 +1,5 @@
 import React from 'react'
+import loginIcon from '../../assets/user-interface.png' // Adjust the path as necessary
 
 function Login({ onClose }) {
   return (
@@ -35,7 +36,7 @@ function Login({ onClose }) {
               className="bg-[#AD2A2A] hover:bg-[#822F2F] text-2xl text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
             >
-              Sign In
+              <img src={loginIcon} alt="Login" className="w-6 h-6" />
             </button>
           </div>
         </form>
