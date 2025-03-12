@@ -42,7 +42,7 @@ export default function Navbar() {
           <RouterLink to="/" className='hover:cursor-pointer hover:underline'>Home</RouterLink>
           <div className='relative z-20'>
             {/* Categories Dropdown */}
-            <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A]' style={{ zIndex: 20 }}>
+            <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A] ' style={{ zIndex: 20 }}>
               CATEGORIES
             </button>
             {isDropdownOpen && (
@@ -67,7 +67,7 @@ export default function Navbar() {
               <span className='absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cart.length}</span>
             </RouterLink>
           )}
-          <img src={loginIcon} alt="Login" className='w-10 h-10 cursor-pointer' onClick={toggleLogin} />
+          <img src={loginIcon} alt="Login" className='w-8 h-8 cursor-pointer' onClick={toggleLogin} />
         </div>
 
         {/* Mobile Menu Button */}
@@ -80,7 +80,7 @@ export default function Navbar() {
               <span className='absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cart.length}</span>
             </RouterLink>
           )}
-          <img src={loginIcon} alt="Login" className='w-10 h-10 cursor-pointer' onClick={toggleLogin} />
+          <img src={loginIcon} alt="Login" className='w-7 h-7 cursor-pointer' onClick={toggleLogin} />
           <button onClick={toggleMenu} className='focus:outline-none'>
             <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M4 6h16M4 12h16m-7 6h7'></path>
