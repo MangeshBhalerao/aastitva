@@ -97,7 +97,7 @@ export default function Navbar() {
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M6 18L18 6M6 6l12 12'></path>
             </svg>
           </button>
-          <RouterLink to="/" className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>Home</RouterLink>
+          
           <div className='relative'>
             <button onClick={toggleDropdown} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded'>
               CATEGORIES
