@@ -5,7 +5,7 @@ function Content() {
     <div 
       className='w-full h-screen flex flex-col justify-center items-center text-white'
       style={{
-        backgroundImage: 'url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTF0OHU1MWhvZXRjZGJybTBzdm9zbmR1cDIybzg0emtwYXlkcm5qYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1J3B6UvWhYv7Ipc4/giphy.webp)',
+        backgroundImage: 'url(https://images6.alphacoders.com/318/thumb-1920-318320.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         fontFamily: 'Bebas Neue, sans-serif',

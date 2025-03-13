@@ -49,7 +49,7 @@ function Allsweatshirt() {
 
       <div className='flex flex-col md:flex-row' style={{ zIndex: 10 }}>
         {/* Filter Component */}
-        <div className={`w-full h-100 mt-4 md:w-1/4 lg:w-1/3 xl:w-1/4 bg-opacity-70 rounded-lg backdrop-blur-md ${showFilter ? 'block' : 'hidden'} md:block`} >
+        <div className={`w-full h-100 mt-2 md:w-1/4 lg:w-1/3 xl:w-1/4 bg-opacity-70 rounded-lg backdrop-blur-md ${showFilter ? 'block' : 'hidden'} md:block`} >
           <Filter priceRange={priceRange} setPriceRange={setPriceRange} sortOrder={sortOrder} setSortOrder={setSortOrder} />
         </div>
 
