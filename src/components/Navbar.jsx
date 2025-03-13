@@ -42,7 +42,7 @@ export default function Navbar() {
           <RouterLink to="/" className='hover:cursor-pointer hover:underline'>Home</RouterLink>
           <div className='relative z-20'>
             {/* Categories Dropdown */}
-            <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A] ' style={{ zIndex: 20 }}>
+            <button onClick={toggleDropdown} className='hover:cursor-pointer hover:underline text-[#AD2A2A]' style={{ zIndex: 20 }}>
               CATEGORIES
             </button>
             {isDropdownOpen && (
@@ -98,7 +98,7 @@ export default function Navbar() {
             </svg>
           </button>
           
-          <div className='relative'>
+          <div className='relative flex-grow'>
             <button onClick={toggleDropdown} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded'>
               CATEGORIES
             </button>
@@ -110,8 +110,10 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>About</ScrollLink>
-          <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>Contact</ScrollLink>
+          <div className='mt-auto'>
+            <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>About</ScrollLink>
+            <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer hover:bg-[#822F2F] px-4 py-2 rounded' onClick={toggleMenu}>Contact</ScrollLink>
+          </div>  
         </div>
       )}
 
