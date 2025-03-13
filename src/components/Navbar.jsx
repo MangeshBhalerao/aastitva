@@ -35,7 +35,7 @@ export default function Navbar() {
       {/* Navbar */}
       <nav className='fixed top-0 left-0 right-0 bg-[#0E0000] bg-opacity-80 backdrop-blur-sm text-2xl w-full h-20 text-white flex justify-between items-center border-b z-20' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
         {/* Logo */}
-        <RouterLink to="/" className='m-8' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</RouterLink>
+        <RouterLink to="/" className='m-4 ' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</RouterLink>
 
         {/* Desktop Menu */}
         <div className='hidden md:flex justify-center items-center space-x-4 m-8 relative z-10'>
@@ -71,7 +71,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className='md:hidden flex items-center space-x-4 m-8 relative z-20'>
+        <div className='md:hidden flex items-center space-x-4 m-4 relative z-20'>
           {cart.length > 0 && (
             <RouterLink to="/cart" className='relative hover:cursor-pointer hover:underline' style={{ color: 'white' }}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className='w-10 h-10' fill='currentColor' stroke='currentColor'>
