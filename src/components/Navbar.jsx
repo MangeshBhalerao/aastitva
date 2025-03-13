@@ -92,27 +92,27 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50 bg-opacity-70 backdrop-blur-xl' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-          <button onClick={toggleMenu} className='self-end p-3'>
-            <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M6 18L18 6M6 6l12 12'></path>
-            </svg>
-          </button>
+          <div className='flex border-b justify-between '>
+              <div className='hover:cursor-pointer text-[#8B0000] text-4xl text-center  p-3 '>
+                CATEGORIES
+              </div>
+            <button onClick={toggleMenu} className='self-end mb-6 mr-5'>
+              <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M6 18L18 6M6 6l12 12'></path>
+              </svg>
+            </button>
+            </div>
           
           <div className='relative flex-grow'>
-            <div className='hover:cursor-pointer text-[#8B0000] text-4xl text-center border-b p-3 '>
-              CATEGORIES
-            </div>
-            
-              <div className='absolute text-white  w-full text-center'>
+              <div className='absolute text-2xl text-white  w-full text-center'>
                 <RouterLink to="/hoodie/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleMenu}>Hoodie</RouterLink>
                 <RouterLink to="/sweatshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleMenu}>Sweatshirt</RouterLink>
                 <RouterLink to="/tshirt/all" className='block px-4 py-2 hover:bg-[#822F2F] rounded' onClick={toggleMenu}>Tshirt</RouterLink>
-              </div>
-            
+              </div>  
           </div>
-          <div className='mt-auto ml-16 w-full'>
-            <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer px-4 py-2 w-full' onClick={toggleMenu}>About</ScrollLink>
-            <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer px-4 py-2 w-full' onClick={toggleMenu}>Contact</ScrollLink>
+          <div className='mt-auto w-full border-t pt-5 text-2xl'>
+            <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer px-4 py-4 ml-12' onClick={toggleMenu}>About</ScrollLink>
+            <ScrollLink to="footer" smooth={true} duration={500} className='hover:cursor-pointer px-4 py-4 ' onClick={toggleMenu}>Contact</ScrollLink>
           </div>  
         </div>
       )}
