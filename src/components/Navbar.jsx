@@ -91,9 +91,9 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50 bg-opacity-70 backdrop-blur-xl' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50 bg-opacity-80 backdrop-blur-xl' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
           <div className='flex border-b justify-between '>
-              <div className='hover:cursor-pointer text-[#8B0000] text-4xl text-center  p-3 '>
+              <div className='hover:cursor-pointer text-[#8B0000] text-4xl text-center  p-3 ml-12 '>
                 CATEGORIES
               </div>
             <button onClick={toggleMenu} className='self-end mb-6 mr-5'>
