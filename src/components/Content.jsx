@@ -10,7 +10,7 @@ function Content() {
       id: 1,
       image: 'https://t3.ftcdn.net/jpg/08/16/49/34/360_F_816493435_iXavwo9ibvVkQ9bThoQBU7lT71XoyzNF.jpg',
       title: 'Premium Hoodies',
-      subtitle: 'Express your अस्तित्व',
+      subtitle: 'Express your presence',
       cta: 'SHOP COLLECTION',
       link: '/hoodie/all'
     },
@@ -24,7 +24,7 @@ function Content() {
     },
     {
       id: 3,
-      image: 'https://wallpapers.com/images/hd/aesthetic-clothes-12sc5o86h0e9xw1t.jpg',
+      image: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/936e2f196230313.661ce36d72df0.png',
       title: 'EXCLUSIVE DESIGNS',
       subtitle: 'Stand out from the crowd',
       cta: 'VIEW COLLECTION',

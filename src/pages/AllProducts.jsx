@@ -58,9 +58,7 @@ function AllProducts({ products }) {
       backgroundPosition: 'center',
       zIndex: 1
     }}>
-      {/* Page Title */}
-      <h1 className="text-4xl font-bold mb-6 text-center">All Products</h1>
-      
+    
       {/* Mobile Filter Toggle Button */}
       <button 
         className='md:hidden bg-[#000000] bg-opacity-80 text-white text-xl py-2 px-4 rounded-md mb-4 flex items-center'
@@ -86,7 +84,7 @@ function AllProducts({ products }) {
 
         <div className='flex-1'>
           {/* Product Count and Loading State */}
-          <div className="mb-4 flex justify-between items-center">
+          <div className="mb-4 mt-20 flex justify-between items-center">
             <h2 className="text-2xl font-bold">
               {isLoading ? 'Loading products...' : `Products (${filteredProducts.length})`}
             </h2>
