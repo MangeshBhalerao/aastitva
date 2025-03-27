@@ -24,7 +24,7 @@ function Cart() {
   };
 
   return (
-    <div className='bg-[#0D0D0D] max-w-7xl min-h-fit mx-auto p-4 sm:p-8 pt-24' style={{
+    <div className='bg-[#0D0D0D] max-w-7xl min-h-fit mx-auto p-4 sm:p-8 pt-28' style={{
       minHeight: 'calc(89vh)',
       fontFamily: 'Bebas Neue, sans-serif',
       }}>
@@ -128,7 +128,7 @@ function Cart() {
                         
                         <div className="mt-2 hidden sm:block">
                           <Link 
-                            to={`/product/${product.category.toLowerCase()}/${product.id}`}
+                            to={`/product/${product.category ? product.category.toLowerCase() : 'tshirt'}/${product.id}`}
                             className="text-sm text-[#AD2A2A] hover:text-[#FF0000] transition-colors"
                           >
                             View Details

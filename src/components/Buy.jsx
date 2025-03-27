@@ -54,7 +54,7 @@ function Buy() {
   // If cart is empty, redirect to home
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen bg-[#0D0D0D] text-white pt-24 flex flex-col items-center justify-center px-4">
+      <div className="min-h-screen bg-[#0D0D0D] text-white pt-28 flex flex-col items-center justify-center px-4">
         <h2 className="text-3xl mb-4">Your cart is empty</h2>
         <p className="mb-8">Add some products to your cart before checkout.</p>
         <button 
@@ -68,7 +68,7 @@ function Buy() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] text-white pt-24 pb-12" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+    <div className="min-h-screen bg-[#0D0D0D] text-white pt-28 pb-12" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-4xl md:text-5xl mb-8 text-center">Checkout</h1>
 
@@ -400,16 +400,16 @@ function Buy() {
                       {formData.paymentMethod === 'card' ? 'Credit/Debit Card' : 
                        formData.paymentMethod === 'upi' ? 'UPI' : 'Cash on Delivery'}
                     </span>
-                  </p>
-                </div>
+              </p>
+            </div>
                 
-                <button 
+              <button 
                   className="w-full bg-[#AD2A2A] hover:bg-[#8B0000] text-white py-3 rounded-sm transition-colors"
                   onClick={handleOrderComplete}
                 >
                   Continue Shopping
                 </button>
-              </div>
+            </div>
             )}
           </div>
         </div>

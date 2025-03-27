@@ -135,7 +135,7 @@ function ProductDetail() {
   ];
   
   return (
-    <div className="min-h-screen bg-[#0D0D0D] text-white pt-24 pb-12" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+    <div className="min-h-screen bg-[#0D0D0D] text-white pt-28 pb-12" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row -mx-4">
           {/* Product Images */}

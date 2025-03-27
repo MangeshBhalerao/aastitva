@@ -1,22 +1,38 @@
 import React, { useState, useEffect } from 'react'
-import Sweatshirtproducts from '../../data/Sweatshirtproducts'
-import ProductCard from '../../components/Card/ProductCard'
-import ProductFilter from '../../components/ProductFilter'
+import ProductCard from '../components/Card/ProductCard'
+import ProductFilter from '../components/ProductFilter'
+import { useContext } from 'react'
+import { CartContext } from '../context/CartContext'
+import { WishlistContext } from '../context/WishlistContext'
+import { useSearchParams } from 'react-router-dom'
 
-function Allsweatshirt() {
+function AllProducts({ products }) {
   const [filteredProducts, setFilteredProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [showMobileFilter, setShowMobileFilter] = useState(false)
+  const { addToCart } = useContext(CartContext)
+  const { addToWishlist } = useContext(WishlistContext)
+  const [searchParams] = useSearchParams()
   
   // Extract unique categories and designs from products for filters
-  const categories = [...new Set(Sweatshirtproducts.map(product => product.category))]
-  const designs = [...new Set(Sweatshirtproducts.filter(product => product.design).map(product => product.design))]
+  const categories = [...new Set(products.map(product => product.category))]
+  const designs = [...new Set(products.filter(product => product.design).map(product => product.design))]
   
-  // Initialize filtered products with all Sweatshirt products
+  // Initialize filtered products with products considering URL params
   useEffect(() => {
-    setFilteredProducts(Sweatshirtproducts.filter(product => product.category === 'Sweatshirt'))
+    const categoryParam = searchParams.get('category')
+    
+    let initialProducts = [...products]
+    
+    if (categoryParam) {
+      initialProducts = initialProducts.filter(
+        product => product.category.toLowerCase() === categoryParam.toLowerCase()
+      )
+    }
+    
+    setFilteredProducts(initialProducts)
     setIsLoading(false)
-  }, [])
+  }, [products, searchParams])
   
   // Handle filter changes from the ProductFilter component
   const handleFilterChange = (newFilteredProducts) => {
@@ -24,15 +40,14 @@ function Allsweatshirt() {
   }
 
   // Function to handle adding a product to the cart
-  const addToCart = (product) => {
-    // Add product to cart logic here
-    console.log(`Added ${product.title} to cart`)
+  const handleAddToCart = (product) => {
+    addToCart(product)
   }
 
   // Function to handle buying a product now
   const buyNow = (product) => {
-    // Buy now logic here
-    console.log(`Buying ${product.title} now`)
+    addToCart(product)
+    window.location.href = '/buy'
   }
 
   return (
@@ -43,6 +58,9 @@ function Allsweatshirt() {
       backgroundPosition: 'center',
       zIndex: 1
     }}>
+      {/* Page Title */}
+      <h1 className="text-4xl font-bold mb-6 text-center">All Products</h1>
+      
       {/* Mobile Filter Toggle Button */}
       <button 
         className='md:hidden bg-[#000000] bg-opacity-80 text-white text-xl py-2 px-4 rounded-md mb-4 flex items-center'
@@ -58,11 +76,11 @@ function Allsweatshirt() {
         {/* Filter Component (Hidden on mobile unless toggled) */}
         <div className={`${showMobileFilter ? 'block' : 'hidden'} md:block md:w-1/4`}>
           <ProductFilter 
-            products={Sweatshirtproducts} 
+            products={products} 
             onFilterChange={handleFilterChange} 
             categories={categories}
             designs={designs}
-            defaultCategory="Sweatshirt"
+            defaultCategory={searchParams.get('category') || ''}
           />
         </div>
 
@@ -70,7 +88,7 @@ function Allsweatshirt() {
           {/* Product Count and Loading State */}
           <div className="mb-4 flex justify-between items-center">
             <h2 className="text-2xl font-bold">
-              {isLoading ? 'Loading products...' : `Sweatshirts (${filteredProducts.length})`}
+              {isLoading ? 'Loading products...' : `Products (${filteredProducts.length})`}
             </h2>
           </div>
 
@@ -89,7 +107,12 @@ function Allsweatshirt() {
           ) : filteredProducts.length > 0 ? (
             <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2'>
               {filteredProducts.map((product, index) => (
-                <ProductCard key={index} product={product} addToCart={addToCart} buyNow={buyNow} />
+                <ProductCard 
+                  key={index} 
+                  product={product} 
+                  addToCart={handleAddToCart} 
+                  buyNow={buyNow} 
+                />
               ))}
             </div>
           ) : (
@@ -106,4 +129,4 @@ function Allsweatshirt() {
   )
 }
 
-export default Allsweatshirt
+export default AllProducts 

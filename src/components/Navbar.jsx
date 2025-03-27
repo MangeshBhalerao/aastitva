@@ -10,6 +10,20 @@ import loginIcon from '../assets/user-interface.png'; // Adjust the path as nece
 // Category data with images and icons
 const categories = [
   {
+    id: 'all',
+    name: 'All Products',
+    route: '/products/all',
+    image: 'https://images.pexels.com/photos/5710224/pexels-photo-5710224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+      </svg>
+    )
+  },
+  {
     id: 'hoodie',
     name: 'Hoodies',
     route: '/hoodie/all',
@@ -163,11 +177,11 @@ export default function Navbar() {
                     
                     <div className='px-5 py-3 border-t border-gray-700'>
                       <RouterLink
-                        to="/hoodie/all"
+                        to="/products/all"
                         className='flex items-center text-[#AD2A2A] hover:text-[#FF0000] transition-colors'
                         onClick={() => setIsDropdownOpen(false)}
                       >
-                        <span>View All Collections</span>
+                        <span>View All Products</span>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>

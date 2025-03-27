@@ -20,6 +20,7 @@ import Sweatshirtproducts from './data/Sweatshirtproducts'
 import Tshirtproducts from './data/Tshirtproducts'
 
 import Buy from './components/Buy'
+import AllProducts from './pages/AllProducts'
 
 function Layout() {
   const location = useLocation()
@@ -38,6 +39,7 @@ function Layout() {
             <Route path="/tshirt/all" element={<Alltshirt products={Tshirtproducts} />} />
             <Route path="/product/:category/:productId" element={<ProductDetail />} />
             <Route path='/buy' Component={Buy} />
+            <Route path="/products/all" element={<AllProducts products={[...Hoodieproducts, ...Sweatshirtproducts, ...Tshirtproducts]} />} />
           </Routes>
           {
           location.pathname !== '/cart' && 
