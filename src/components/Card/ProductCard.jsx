@@ -137,14 +137,14 @@ const ProductCard = ({ product }) => {
               {product.category}
             </span>
           </div>
-        </div>
+      </div>
         
         {/* Product content */}
         <div className='p-4 flex flex-col h-[calc(450px-256px)]'>
           <h3 className='text-xl font-bold mb-2 text-[#FF0000] line-clamp-1'>{product.title}</h3>
           <p className='text-sm text-gray-300 mb-4 flex-grow line-clamp-3'>
-            {product.description}
-          </p>
+          {product.description}
+        </p>
           
           {/* Price and actions */}
           <div className='mt-auto'>
@@ -293,7 +293,7 @@ const ProductCard = ({ product }) => {
                     Add to Cart
                   </button>
                   
-                  <button 
+        <button 
                     onClick={() => {
                       closeQuickView();
                       goToProductDetail();
@@ -301,9 +301,9 @@ const ProductCard = ({ product }) => {
                     className='border border-gray-700 hover:border-white text-white py-3 rounded transition-colors duration-300'
                   >
                     View Full Details
-                  </button>
-                </div>
-              </div>
+        </button>
+      </div>
+    </div>
             </div>
           </div>
         </div>
