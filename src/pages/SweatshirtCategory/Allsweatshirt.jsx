@@ -68,7 +68,7 @@ function Allsweatshirt() {
 
         <div className='flex-1'>
           {/* Product Count and Loading State */}
-          <div className="mb-4 mt-20 flex justify-between items-center">
+          <div className="mb-4 lg:mt-20 ml-2 flex justify-between items-center">
             <h2 className="text-2xl font-bold">
               {isLoading ? 'Loading products...' : `Sweatshirts (${filteredProducts.length})`}
             </h2>

@@ -54,7 +54,7 @@ function Alltshirt() {
         {showMobileFilter ? 'Hide Filters' : 'Show Filters'}
       </button>
 
-      <div className='flex flex-col md:flex-row gap-4'>
+      <div className='flex flex-col lg:mt-20 ml-2 md:flex-row gap-4'>
         {/* Filter Component (Hidden on mobile unless toggled) */}
         <div className={`${showMobileFilter ? 'block' : 'hidden'} md:block md:w-1/4`}>
           <ProductFilter 

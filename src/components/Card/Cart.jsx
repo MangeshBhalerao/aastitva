@@ -73,7 +73,7 @@ function Cart() {
                 const itemTotal = product.price * product.quantity;
                 
                 return (
-                  <div key={index} className='flex flex-col sm:flex-row bg-black bg-opacity-50 border border-gray-800 rounded-md overflow-hidden transition-all duration-300 hover:border-gray-700'>
+                  <div key={index} className='flex flex-col sm:flex-row bg-gray-400 bg-opacity-50 border border-gray-800 rounded-md overflow-hidden transition-all duration-300 hover:border-gray-700'>
                     <div className='sm:w-7/12 flex'>
                       {/* Product Image */}
                       <div className='w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0'>
@@ -198,7 +198,7 @@ function Cart() {
           
           {/* Order Summary Section */}
           <div className="xl:w-1/3">
-            <div className="bg-black bg-opacity-50 border border-gray-800 rounded-md p-6 sticky top-24">
+            <div className="bg-gray-400 bg-opacity-50 border border-gray-800 rounded-md p-6 sticky top-24">
               <h2 className="text-2xl font-bold mb-6 border-b border-gray-800 pb-4">Order Summary</h2>
               
               <div className="space-y-3 mb-6">
