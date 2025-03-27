@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import Login from './Card/Login';
 import { CartContext } from './Card/Cart';
+import Search from './Card/Search';
 import loginIcon from '../assets/user-interface.png'; // Adjust the path as necessary
 
 export default function Navbar() {
@@ -12,6 +13,8 @@ export default function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   // State to manage the visibility of the login modal
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  // State to manage the visibility of the search modal
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   // Context to get the cart items
   const { cart } = useContext(CartContext);
 
@@ -28,6 +31,11 @@ export default function Navbar() {
   // Function to toggle the login modal
   const toggleLogin = () => {
     setIsLoginOpen(!isLoginOpen);
+  };
+
+  // Function to toggle the search modal
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
   };
 
   return (
@@ -59,6 +67,17 @@ export default function Navbar() {
 
         {/* Desktop Cart and Login */}
         <div className='hidden md:flex items-center space-x-4 m-8 relative z-10'>
+          {/* Search Button */}
+          <button 
+            onClick={toggleSearch}
+            className='text-white hover:text-gray-300'
+            aria-label="Search"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+
           {cart.length > 0 && (
             <RouterLink to="/cart" className='relative hover:cursor-pointer hover:underline' style={{ color: 'white' }}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className='w-10 h-10' fill='currentColor' stroke='currentColor'>
@@ -72,6 +91,17 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className='md:hidden flex items-center space-x-4 m-4 relative z-20'>
+          {/* Mobile Search */}
+          <button 
+            onClick={toggleSearch}
+            className='text-white'
+            aria-label="Search"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+
           {cart.length > 0 && (
             <RouterLink to="/cart" className='relative hover:cursor-pointer hover:underline' style={{ color: 'white' }}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className='w-10 h-10' fill='currentColor' stroke='currentColor'>
@@ -119,6 +149,9 @@ export default function Navbar() {
 
       {/* Login Modal */}
       {isLoginOpen && <Login onClose={toggleLogin} />}
+
+      {/* Search Modal */}
+      <Search isOpen={isSearchOpen} onClose={toggleSearch} />
     </div>
   );
 }
