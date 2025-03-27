@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 function Content() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   
   const slides = [
     {
@@ -32,6 +33,29 @@ function Content() {
   ];
 
   useEffect(() => {
+    // Preload images
+    const preloadImages = () => {
+      let loadedCount = 0;
+      slides.forEach(slide => {
+        const img = new Image();
+        img.src = slide.image;
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === slides.length) {
+            setIsLoading(false);
+          }
+        };
+        img.onerror = () => {
+          loadedCount++;
+          if (loadedCount === slides.length) {
+            setIsLoading(false);
+          }
+        };
+      });
+    };
+
+    preloadImages();
+
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
@@ -50,6 +74,14 @@ function Content() {
   const goToNextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center bg-[#0D0D0D]">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-600"></div>
+      </div>
+    );
+  }
 
   return (
     <div 
@@ -70,6 +102,7 @@ function Content() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
+          aria-hidden={index !== currentSlide}
         >
           <div className='absolute inset-0 bg-black bg-opacity-40'></div>
           <div className='absolute inset-0 flex flex-col justify-center items-center text-white text-center p-4'>
@@ -95,6 +128,7 @@ function Content() {
               currentSlide === index ? 'bg-white' : 'bg-gray-400'
             }`}
             aria-label={`Go to slide ${index + 1}`}
+            aria-pressed={currentSlide === index}
           ></button>
         ))}
       </div>

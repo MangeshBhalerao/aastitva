@@ -2,8 +2,8 @@ import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import Login from './Card/Login';
-import { CartContext } from './Card/Cart';
-import { WishlistContext } from './Card/WishlistContext';
+import { CartContext } from '../context/CartContext';
+import { WishlistContext } from '../context/WishlistContext';
 import Search from './Card/Search';
 import loginIcon from '../assets/user-interface.png'; // Adjust the path as necessary
 
@@ -57,9 +57,9 @@ export default function Navbar() {
   // State to manage the visibility of the search modal
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   // Context to get the cart items
-  const { cart } = useContext(CartContext);
+  const { cart, getCartItemCount } = useContext(CartContext);
   // Context to get the wishlist items
-  const { wishlist } = useContext(WishlistContext);
+  const { wishlist, getWishlistCount } = useContext(WishlistContext);
   
   // Ref for dropdown menu for detecting clicks outside
   const dropdownRef = useRef(null);
@@ -97,6 +97,10 @@ export default function Navbar() {
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
+
+  // Get cart and wishlist counts
+  const cartCount = getCartItemCount();
+  const wishlistCount = getWishlistCount();
 
   return (
     <div>
@@ -227,7 +231,7 @@ export default function Navbar() {
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               className="h-7 w-7" 
-              fill={wishlist.length > 0 ? '#AD2A2A' : 'none'} 
+              fill={wishlistCount > 0 ? '#AD2A2A' : 'none'} 
               viewBox="0 0 24 24" 
               stroke="currentColor"
             >
@@ -238,18 +242,18 @@ export default function Navbar() {
                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
               />
             </svg>
-            {wishlist.length > 0 && (
-              <span className='absolute -top-1 -right-1 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{wishlist.length}</span>
+            {wishlistCount > 0 && (
+              <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{wishlistCount}</span>
             )}
           </RouterLink>
 
           {/* Cart Button */}
-          {cart.length > 0 && (
+          {cartCount > 0 && (
             <RouterLink to="/cart" className='relative hover:cursor-pointer hover:underline' style={{ color: 'white' }}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className='w-10 h-10' fill='currentColor' stroke='currentColor'>
                 <path className="cls-1" d="M29.46 10.14A2.94 2.94 0 0 0 27.1 9H10.22L8.76 6.35A2.67 2.67 0 0 0 6.41 5H3a1 1 0 0 0 0 2h3.41a.68.68 0 0 1 .6.31l1.65 3 .86 9.32a3.84 3.84 0 0 0 4 3.38h10.37a3.92 3.92 0 0 0 3.85-2.78l2.17-7.82a2.58 2.58 0 0 0-.45-2.27zM28 11.86l-2.17 7.83A1.93 1.93 0 0 1 23.89 21H13.48a1.89 1.89 0 0 1-2-1.56L10.73 11H27.1a1 1 0 0 1 .77.35.59.59 0 0 1 .13.51z"/><circle className="cls-1" cx="14" cy="26" r="2"/><circle className="cls-1" cx="24" cy="26" r="2"/>
               </svg>
-              <span className='absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cart.length}</span>
+              <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
             </RouterLink>
           )}
           <img src={loginIcon} alt="Login" className='w-8 h-8 cursor-pointer' onClick={toggleLogin} />
@@ -273,7 +277,7 @@ export default function Navbar() {
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               className="h-6 w-6" 
-              fill={wishlist.length > 0 ? '#AD2A2A' : 'none'} 
+              fill={wishlistCount > 0 ? '#AD2A2A' : 'none'} 
               viewBox="0 0 24 24" 
               stroke="currentColor"
             >
@@ -284,18 +288,18 @@ export default function Navbar() {
                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
               />
             </svg>
-            {wishlist.length > 0 && (
-              <span className='absolute -top-1 -right-1 bg-red-600 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center'>{wishlist.length}</span>
+            {wishlistCount > 0 && (
+              <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center'>{wishlistCount}</span>
             )}
           </RouterLink>
 
           {/* Mobile Cart */}
-          {cart.length > 0 && (
+          {cartCount > 0 && (
             <RouterLink to="/cart" className='relative hover:cursor-pointer hover:underline' style={{ color: 'white' }}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className='w-10 h-10' fill='currentColor' stroke='currentColor'>
                 <path className="cls-1" d="M29.46 10.14A2.94 2.94 0 0 0 27.1 9H10.22L8.76 6.35A2.67 2.67 0 0 0 6.41 5H3a1 1 0 0 0 0 2h3.41a.68.68 0 0 1 .6.31l1.65 3 .86 9.32a3.84 3.84 0 0 0 4 3.38h10.37a3.92 3.92 0 0 0 3.85-2.78l2.17-7.82a2.58 2.58 0 0 0-.45-2.27zM28 11.86l-2.17 7.83A1.93 1.93 0 0 1 23.89 21H13.48a1.89 1.89 0 0 1-2-1.56L10.73 11H27.1a1 1 0 0 1 .77.35.59.59 0 0 1 .13.51z"/><circle className="cls-1" cx="14" cy="26" r="2"/><circle className="cls-1" cx="24" cy="26" r="2"/>
               </svg>
-              <span className='absolute top-0 right-0 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cart.length}</span>
+              <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
             </RouterLink>
           )}
           <img src={loginIcon} alt="Login" className='w-7 h-7 cursor-pointer' onClick={toggleLogin} />
@@ -350,12 +354,14 @@ export default function Navbar() {
       <Search isOpen={isSearchOpen} onClose={toggleSearch} />
       
       {/* Dropdown animation styles */}
-      <style jsx>{`
+      <style>
+        {`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px) translateX(-50%); }
           to { opacity: 1; transform: translateY(0) translateX(-50%); }
         }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 }

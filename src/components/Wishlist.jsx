@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { WishlistContext } from './Card/WishlistContext';
-import { CartContext } from './Card/Cart';
+import { WishlistContext } from '../context/WishlistContext';
+import { CartContext } from '../context/CartContext';
 
 const Wishlist = () => {
   const { wishlist, removeFromWishlist, clearWishlist } = useContext(WishlistContext);
@@ -11,17 +11,13 @@ const Wishlist = () => {
   // State for confirmation modal
   const [showConfirmClear, setShowConfirmClear] = useState(false);
   
+  // State for image loading
+  const [loadingImages, setLoadingImages] = useState({});
+  
   // Handle add to cart and remove from wishlist
   const handleMoveToCart = (product) => {
-    // Create a product with default options for the cart
-    const productWithOptions = {
-      ...product,
-      selectedSize: 'M',
-      selectedColor: 'Black',
-      quantity: 1
-    };
-    
-    addToCart(productWithOptions);
+    // Add to cart with default options
+    addToCart(product, 'M', 'Black', 1);
     removeFromWishlist(product.id);
   };
   
@@ -45,6 +41,23 @@ const Wishlist = () => {
   const goToProductDetail = (product) => {
     navigate(`/product/${product.category.toLowerCase()}/${product.id}`);
   };
+  
+  // Handle image load state
+  const handleImageLoad = (productId) => {
+    setLoadingImages(prev => ({
+      ...prev,
+      [productId]: false
+    }));
+  };
+  
+  // Initialize loading state for all images
+  useEffect(() => {
+    const newLoadingState = {};
+    wishlist.forEach(item => {
+      newLoadingState[item.id] = true;
+    });
+    setLoadingImages(newLoadingState);
+  }, [wishlist]);
   
   return (
     <div className="min-h-screen bg-[#0D0D0D] text-white pt-24 pb-12" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
@@ -78,10 +91,10 @@ const Wishlist = () => {
         ) : (
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Wishlist Items */}
-            <div className="lg:w-3/4">
-              <div className="bg-gray-900 rounded-lg p-6">
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl">{wishlist.length} {wishlist.length === 1 ? 'Item' : 'Items'}</h2>
+            <div className="lg:w-3/4 w-full">
+              <div className="bg-gray-900 rounded-lg p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
+                  <h2 className="text-2xl mb-2 sm:mb-0">{wishlist.length} {wishlist.length === 1 ? 'Item' : 'Items'}</h2>
                   <button 
                     onClick={confirmClearWishlist}
                     className="text-sm text-gray-400 hover:text-white transition-colors"
@@ -93,15 +106,22 @@ const Wishlist = () => {
                 <div className="space-y-6">
                   {wishlist.map((item) => (
                     <div key={item.id} className="flex flex-col md:flex-row bg-black rounded-lg overflow-hidden">
-                      {/* Product Image */}
+                      {/* Product Image with loading state */}
                       <div 
-                        className="w-full md:w-1/4 h-48 cursor-pointer"
+                        className="w-full md:w-1/4 h-48 cursor-pointer relative"
                         onClick={() => goToProductDetail(item)}
                       >
+                        {loadingImages[item.id] && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+                            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
+                          </div>
+                        )}
                         <img 
                           src={item.image} 
                           alt={item.title} 
                           className="w-full h-full object-cover"
+                          loading="lazy"
+                          onLoad={() => handleImageLoad(item.id)}
                         />
                       </div>
                       
@@ -110,7 +130,7 @@ const Wishlist = () => {
                         <div>
                           <div className="flex justify-between items-start">
                             <h3 
-                              className="text-2xl text-[#FF0000] mb-2 cursor-pointer hover:underline"
+                              className="text-xl sm:text-2xl text-[#FF0000] mb-2 cursor-pointer hover:underline"
                               onClick={() => goToProductDetail(item)}
                             >
                               {item.title}
@@ -131,7 +151,7 @@ const Wishlist = () => {
                           <p className="text-xl mb-4">₹{item.price}</p>
                         </div>
                         
-                        <div className="flex space-x-4">
+                        <div className="flex flex-col sm:flex-row gap-2 sm:space-x-4">
                           <button
                             onClick={() => goToProductDetail(item)}
                             className="bg-transparent border border-white hover:bg-gray-800 text-white px-4 py-2 rounded-sm transition-colors flex-1"
@@ -153,8 +173,8 @@ const Wishlist = () => {
             </div>
             
             {/* Actions Sidebar */}
-            <div className="lg:w-1/4">
-              <div className="bg-gray-900 rounded-lg p-6 sticky top-24">
+            <div className="lg:w-1/4 w-full">
+              <div className="bg-gray-900 rounded-lg p-6 lg:sticky lg:top-24">
                 <h2 className="text-2xl mb-6">Wishlist Summary</h2>
                 <p className="text-gray-400 mb-4">Save items to your wishlist to keep track of what you like.</p>
                 
@@ -183,12 +203,12 @@ const Wishlist = () => {
       
       {/* Confirmation Modal for Clearing Wishlist */}
       {showConfirmClear && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-900 rounded-lg p-6 max-w-md w-full mx-4">
             <h3 className="text-2xl mb-4">Clear Wishlist?</h3>
             <p className="text-gray-400 mb-6">Are you sure you want to remove all items from your wishlist? This action cannot be undone.</p>
             
-            <div className="flex space-x-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:space-x-4">
               <button
                 onClick={handleCancelClear}
                 className="flex-1 bg-transparent border border-white hover:bg-gray-800 text-white px-4 py-2 rounded-sm transition-colors"

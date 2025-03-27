@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { WishlistContext } from './WishlistContext';
+import { WishlistContext } from '../../context/WishlistContext';
 
 const ProductCard = ({ product, addToCart }) => {
   const [isHovered, setIsHovered] = useState(false);

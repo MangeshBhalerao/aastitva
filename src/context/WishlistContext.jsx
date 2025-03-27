@@ -1,19 +1,28 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// Create the wishlist context
+// Create the wishlist context (updated for refresh)
 export const WishlistContext = createContext();
 
 // Create a provider component to wrap our app
 export const WishlistProvider = ({ children }) => {
   // Initialize state from localStorage if available
   const [wishlist, setWishlist] = useState(() => {
-    const savedWishlist = localStorage.getItem('wishlist');
-    return savedWishlist ? JSON.parse(savedWishlist) : [];
+    try {
+      const savedWishlist = localStorage.getItem('wishlist');
+      return savedWishlist ? JSON.parse(savedWishlist) : [];
+    } catch (error) {
+      console.error('Error parsing wishlist from localStorage:', error);
+      return [];
+    }
   });
 
   // Save wishlist to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    try {
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    } catch (error) {
+      console.error('Error saving wishlist to localStorage:', error);
+    }
   }, [wishlist]);
 
   // Add an item to the wishlist
@@ -58,6 +67,11 @@ export const WishlistProvider = ({ children }) => {
   const clearWishlist = () => {
     setWishlist([]);
   };
+  
+  // Get wishlist count for the navbar
+  const getWishlistCount = () => {
+    return wishlist.length;
+  };
 
   // Create the context value
   const contextValue = {
@@ -66,7 +80,8 @@ export const WishlistProvider = ({ children }) => {
     removeFromWishlist,
     toggleWishlist,
     isInWishlist,
-    clearWishlist
+    clearWishlist,
+    getWishlistCount
   };
 
   return (

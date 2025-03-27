@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { CartContext } from './Card/Cart';
-import { WishlistContext } from './Card/WishlistContext';
+import { CartContext } from '../context/CartContext';
+import { WishlistContext } from '../context/WishlistContext';
 import Hoodieproducts from '../data/Hoodieproducts';
 import Sweatshirtproducts from '../data/Sweatshirtproducts';
 import Tshirtproducts from '../data/Tshirtproducts';
@@ -18,9 +18,6 @@ function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState('');
-  
-  // Check if product is in wishlist
-  const [inWishlist, setInWishlist] = useState(false);
   
   // Available sizes for clothing
   const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
@@ -61,20 +58,15 @@ function ProductDetail() {
     setLoading(false);
   }, [productId, category]);
   
-  // Update wishlist status when product changes
-  useEffect(() => {
-    if (product) {
-      setInWishlist(isInWishlist(product.id));
-    }
-  }, [product, isInWishlist]);
-  
   // Handle toggle wishlist
   const handleToggleWishlist = () => {
     if (product) {
       toggleWishlist(product);
-      setInWishlist(!inWishlist);
     }
   };
+
+  // Check if product is in wishlist - calculated directly from context
+  const inWishlist = product ? isInWishlist(product.id) : false;
   
   if (loading) {
     return (
@@ -119,7 +111,7 @@ function ProductDetail() {
       quantity
     };
     
-    addToCart(productWithOptions);
+    addToCart(product, selectedSize, selectedColor.name, quantity);
     
     // Optional: Show confirmation or navigate to cart
     const confirmAdd = window.confirm('Product added to cart. View cart now?');
@@ -149,10 +141,12 @@ function ProductDetail() {
           {/* Product Images */}
           <div className="md:flex-1 px-4 mb-8 md:mb-0">
             <div className="h-96 md:h-[32rem] rounded-lg bg-black mb-4 overflow-hidden relative">
+              {/* Image with lazy loading */}
               <img 
                 src={mainImage} 
                 alt={product.title} 
                 className="w-full h-full object-contain"
+                loading="lazy"
               />
               
               {/* Wishlist button */}
@@ -194,6 +188,7 @@ function ProductDetail() {
                       src={image.url} 
                       alt={image.alt}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -281,6 +276,7 @@ function ProductDetail() {
                     }`}
                     style={{ backgroundColor: color.value }}
                     onClick={() => setSelectedColor(color)}
+                    aria-label={`Select ${color.name} color`}
                   ></button>
                 ))}
               </div>
@@ -293,6 +289,7 @@ function ProductDetail() {
                 <button 
                   className="bg-gray-800 px-3 py-1 rounded-l-md hover:bg-gray-700 transition-colors"
                   onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                  aria-label="Decrease quantity"
                 >
                   -
                 </button>
@@ -302,6 +299,7 @@ function ProductDetail() {
                 <button 
                   className="bg-gray-800 px-3 py-1 rounded-r-md hover:bg-gray-700 transition-colors"
                   onClick={() => setQuantity(prev => prev + 1)}
+                  aria-label="Increase quantity"
                 >
                   +
                 </button>

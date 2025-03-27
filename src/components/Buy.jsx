@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from './Card/Cart';
+import { CartContext } from '../context/CartContext';
 
 function Buy() {
-  const { cart, getCartTotal, clearCart } = useContext(CartContext);
+  const { cart, getCartSubtotal, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -45,6 +45,11 @@ function Buy() {
     clearCart();
     navigate('/');
   };
+
+  // Calculate tax amount
+  const subtotal = getCartSubtotal();
+  const taxAmount = subtotal * 0.18;
+  const total = subtotal + taxAmount;
 
   // If cart is empty, redirect to home
   if (cart.length === 0) {
@@ -89,16 +94,21 @@ function Buy() {
                 {cart.map((item, index) => (
                   <div key={index} className="flex py-3 border-b border-gray-800">
                     <div className="w-20 h-20 flex-shrink-0">
-                      <img src={item.image} alt={item.title} className="w-full h-full object-cover rounded" />
+                      <img 
+                        src={item.image} 
+                        alt={item.title} 
+                        className="w-full h-full object-cover rounded" 
+                        loading="lazy"
+                      />
                     </div>
                     <div className="ml-4 flex-grow">
                       <h3 className="font-medium">{item.title}</h3>
                       <div className="flex text-sm text-gray-400 mt-1">
-                        {item.selectedSize && <span className="mr-3">Size: {item.selectedSize}</span>}
-                        {item.selectedColor && <span>Color: {item.selectedColor}</span>}
+                        {item.size && <span className="mr-3">Size: {item.size}</span>}
+                        {item.color && <span>Color: {item.color}</span>}
                       </div>
                       <div className="flex justify-between mt-2">
-                        <span>Qty: {item.quantity || 1}</span>
+                        <span>Qty: {item.quantity}</span>
                         <span className="text-[#FF0000]">₹{item.price}</span>
                       </div>
                     </div>
@@ -110,7 +120,7 @@ function Buy() {
               <div className="space-y-2 py-4 border-t border-b border-gray-800 mb-4">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Subtotal:</span>
-                  <span>₹{getCartTotal().toFixed(2)}</span>
+                  <span>₹{subtotal}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Shipping:</span>
@@ -118,13 +128,13 @@ function Buy() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Tax:</span>
-                  <span>₹{(getCartTotal() * 0.18).toFixed(2)}</span>
+                  <span>₹{taxAmount.toFixed(2)}</span>
                 </div>
               </div>
               
               <div className="flex justify-between text-xl">
                 <span>Total:</span>
-                <span>₹{(getCartTotal() * 1.18).toFixed(2)}</span>
+                <span>₹{total.toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -248,7 +258,7 @@ function Buy() {
                         value="card" 
                         checked={formData.paymentMethod === 'card'}
                         onChange={handleChange}
-                        className="form-radio h-5 w-5 text-[#AD2A2A]"
+                        className="text-[#AD2A2A] focus:ring-[#AD2A2A]"
                       />
                       <span>Credit / Debit Card</span>
                     </label>
@@ -260,7 +270,7 @@ function Buy() {
                         value="upi" 
                         checked={formData.paymentMethod === 'upi'}
                         onChange={handleChange}
-                        className="form-radio h-5 w-5 text-[#AD2A2A]"
+                        className="text-[#AD2A2A] focus:ring-[#AD2A2A]"
                       />
                       <span>UPI</span>
                     </label>
@@ -272,19 +282,19 @@ function Buy() {
                         value="cod" 
                         checked={formData.paymentMethod === 'cod'}
                         onChange={handleChange}
-                        className="form-radio h-5 w-5 text-[#AD2A2A]"
+                        className="text-[#AD2A2A] focus:ring-[#AD2A2A]"
                       />
                       <span>Cash on Delivery</span>
                     </label>
                   </div>
                   
                   {formData.paymentMethod === 'card' && (
-                    <div className="mt-6 space-y-4">
+                    <div className="space-y-4 mt-4 border-t border-gray-800 pt-4">
                       <div>
                         <label className="block mb-1 text-gray-300">Card Number</label>
                         <input 
                           type="text" 
-                          placeholder="1234 5678 9012 3456"
+                          placeholder="XXXX XXXX XXXX XXXX" 
                           className="w-full p-2 rounded-sm bg-gray-800 border border-gray-700 focus:border-[#AD2A2A] focus:outline-none" 
                         />
                       </div>
@@ -294,7 +304,7 @@ function Buy() {
                           <label className="block mb-1 text-gray-300">Expiry Date</label>
                           <input 
                             type="text" 
-                            placeholder="MM/YY"
+                            placeholder="MM/YY" 
                             className="w-full p-2 rounded-sm bg-gray-800 border border-gray-700 focus:border-[#AD2A2A] focus:outline-none" 
                           />
                         </div>
@@ -302,17 +312,16 @@ function Buy() {
                           <label className="block mb-1 text-gray-300">CVV</label>
                           <input 
                             type="text" 
-                            placeholder="123"
+                            placeholder="XXX" 
                             className="w-full p-2 rounded-sm bg-gray-800 border border-gray-700 focus:border-[#AD2A2A] focus:outline-none" 
                           />
                         </div>
                       </div>
                       
                       <div>
-                        <label className="block mb-1 text-gray-300">Cardholder Name</label>
+                        <label className="block mb-1 text-gray-300">Name on Card</label>
                         <input 
                           type="text" 
-                          placeholder="John Doe"
                           className="w-full p-2 rounded-sm bg-gray-800 border border-gray-700 focus:border-[#AD2A2A] focus:outline-none" 
                         />
                       </div>
@@ -320,27 +329,22 @@ function Buy() {
                   )}
                   
                   {formData.paymentMethod === 'upi' && (
-                    <div className="mt-6">
-                      <label className="block mb-1 text-gray-300">UPI ID</label>
-                      <input 
-                        type="text" 
-                        placeholder="name@upi"
-                        className="w-full p-2 rounded-sm bg-gray-800 border border-gray-700 focus:border-[#AD2A2A] focus:outline-none" 
-                      />
+                    <div className="space-y-4 mt-4 border-t border-gray-800 pt-4">
+                      <div>
+                        <label className="block mb-1 text-gray-300">UPI ID</label>
+                        <input 
+                          type="text" 
+                          placeholder="yourname@upi" 
+                          className="w-full p-2 rounded-sm bg-gray-800 border border-gray-700 focus:border-[#AD2A2A] focus:outline-none" 
+                        />
+                      </div>
                     </div>
                   )}
                   
-                  <div className="pt-6 flex space-x-4">
-                    <button 
-                      type="button"
-                      onClick={() => setStep(1)}
-                      className="w-1/2 bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-sm transition-colors"
-                    >
-                      Back
-                    </button>
+                  <div className="pt-4 flex flex-col gap-3">
                     <button 
                       type="submit"
-                      className={`w-1/2 bg-[#AD2A2A] hover:bg-[#8B0000] text-white py-3 rounded-sm transition-colors flex justify-center items-center ${isProcessing ? 'opacity-70 cursor-not-allowed' : ''}`}
+                      className="w-full bg-[#AD2A2A] hover:bg-[#8B0000] text-white py-3 rounded-sm transition-colors flex justify-center items-center"
                       disabled={isProcessing}
                     >
                       {isProcessing ? (
@@ -349,11 +353,17 @@ function Buy() {
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
-                          Processing...
+                          Processing Payment...
                         </>
-                      ) : (
-                        'Place Order'
-                      )}
+                      ) : `Place Order - ₹${total.toFixed(2)}`}
+                    </button>
+                    
+                    <button 
+                      type="button"
+                      onClick={() => setStep(1)}
+                      className="w-full bg-transparent border border-gray-600 hover:border-white text-white py-3 rounded-sm transition-colors"
+                    >
+                      Back to Shipping
                     </button>
                   </div>
                 </form>
@@ -361,34 +371,44 @@ function Buy() {
             )}
             
             {step === 3 && (
-              <div className="bg-black bg-opacity-50 border border-gray-800 p-8 rounded-md text-center">
-                <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  
-                  <h2 className="text-3xl mb-2">Thank You!</h2>
-                  <p className="text-lg mb-8">Your order has been placed successfully.</p>
-                  
-                  <div className="bg-gray-800 p-4 rounded-md w-full max-w-sm mb-8">
-                    <p className="text-gray-400">Order Number:</p>
-                    <p className="text-xl">#AAS-{Math.floor(Math.random() * 10000).toString().padStart(4, '0')}</p>
-                  </div>
-                  
-                  <p className="text-gray-400 mb-6">
-                    We've sent a confirmation email to <span className="text-white">{formData.email}</span>
-                    <br />You'll receive shipping updates soon.
-                  </p>
-                  
-                  <button 
-                    onClick={handleOrderComplete}
-                    className="bg-[#AD2A2A] hover:bg-[#8B0000] text-white px-8 py-3 rounded-sm transition-colors"
-                  >
-                    Continue Shopping
-                  </button>
+              <div className="bg-black bg-opacity-50 border border-gray-800 p-6 rounded-md text-center">
+                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-green-800 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
+                
+                <h2 className="text-3xl mb-3">Thank You for Your Order!</h2>
+                <p className="text-gray-400 mb-6">Your order has been placed successfully.</p>
+                
+                <div className="text-left p-4 bg-gray-900 rounded-md mb-8">
+                  <p className="border-b border-gray-800 pb-2 mb-2">
+                    <span className="text-gray-400">Order Number:</span> 
+                    <span className="float-right">ASTITVA-{Math.floor(100000 + Math.random() * 900000)}</span>
+                  </p>
+                  <p className="border-b border-gray-800 pb-2 mb-2">
+                    <span className="text-gray-400">Shipping Address:</span> 
+                    <span className="float-right">{formData.address}</span>
+                  </p>
+                  <p className="border-b border-gray-800 pb-2 mb-2">
+                    <span className="text-gray-400">Order Total:</span> 
+                    <span className="float-right">₹{total.toFixed(2)}</span>
+                  </p>
+                  <p>
+                    <span className="text-gray-400">Payment Method:</span> 
+                    <span className="float-right">
+                      {formData.paymentMethod === 'card' ? 'Credit/Debit Card' : 
+                       formData.paymentMethod === 'upi' ? 'UPI' : 'Cash on Delivery'}
+                    </span>
+                  </p>
+                </div>
+                
+                <button 
+                  className="w-full bg-[#AD2A2A] hover:bg-[#8B0000] text-white py-3 rounded-sm transition-colors"
+                  onClick={handleOrderComplete}
+                >
+                  Continue Shopping
+                </button>
               </div>
             )}
           </div>
