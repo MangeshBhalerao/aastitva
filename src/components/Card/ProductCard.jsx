@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { WishlistContext } from './WishlistContext';
 
 const ProductCard = ({ product, addToCart }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showQuickView, setShowQuickView] = useState(false);
   const navigate = useNavigate();
+  const { isInWishlist, toggleWishlist } = useContext(WishlistContext);
+  
+  // Check if product is in wishlist
+  const productInWishlist = isInWishlist(product.id);
   
   // Handle mouse enter
   const handleMouseEnter = () => {
@@ -31,6 +36,12 @@ const ProductCard = ({ product, addToCart }) => {
   const goToProductDetail = () => {
     navigate(`/product/${product.category.toLowerCase()}/${product.id}`);
   };
+  
+  // Handle toggle wishlist
+  const handleToggleWishlist = (e) => {
+    e.stopPropagation(); // Prevent navigating to detail page
+    toggleWishlist(product);
+  };
 
   return (
     <>
@@ -56,6 +67,32 @@ const ProductCard = ({ product, addToCart }) => {
               </button>
             </div>
           )}
+          
+          {/* Wishlist button */}
+          <button
+            onClick={handleToggleWishlist}
+            className={`absolute top-2 right-2 p-1.5 rounded-full z-20 transition-all duration-300 ${
+              productInWishlist 
+                ? 'bg-[#AD2A2A] text-white' 
+                : 'bg-black bg-opacity-50 text-white hover:bg-[#AD2A2A]'
+            }`}
+            aria-label={productInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-5 w-5" 
+              fill={productInWishlist ? "currentColor" : "none"} 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={1.5} 
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
+              />
+            </svg>
+          </button>
         </div>
         <div className='relative pt-64 px-6 py-4 z-20'>
           <div className='text-3xl mb-2 text-[#FF0000]'>{product.title}</div>
@@ -90,8 +127,34 @@ const ProductCard = ({ product, addToCart }) => {
           <div className='bg-[#0D0D0D] rounded-lg max-w-4xl w-full mx-4 overflow-hidden' onClick={e => e.stopPropagation()}>
             <div className='flex flex-col md:flex-row'>
               {/* Product Image */}
-              <div className='w-full md:w-1/2'>
+              <div className='w-full md:w-1/2 relative'>
                 <img src={product.image} alt={product.title} className='w-full h-full object-cover' />
+                
+                {/* Wishlist button in modal */}
+                <button
+                  onClick={handleToggleWishlist}
+                  className={`absolute top-4 right-4 p-2 rounded-full z-20 transition-all duration-300 ${
+                    productInWishlist 
+                      ? 'bg-[#AD2A2A] text-white' 
+                      : 'bg-black bg-opacity-50 text-white hover:bg-[#AD2A2A]'
+                  }`}
+                  aria-label={productInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+                >
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-6 w-6" 
+                    fill={productInWishlist ? "currentColor" : "none"} 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={1.5} 
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
+                    />
+                  </svg>
+                </button>
               </div>
               
               {/* Product Details */}

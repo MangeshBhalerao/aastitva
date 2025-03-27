@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CartContext } from './Card/Cart';
+import { WishlistContext } from './Card/WishlistContext';
 import Hoodieproducts from '../data/Hoodieproducts';
 import Sweatshirtproducts from '../data/Sweatshirtproducts';
 import Tshirtproducts from '../data/Tshirtproducts';
@@ -8,6 +9,7 @@ import Tshirtproducts from '../data/Tshirtproducts';
 function ProductDetail() {
   const { productId, category } = useParams();
   const { addToCart } = useContext(CartContext);
+  const { isInWishlist, toggleWishlist } = useContext(WishlistContext);
   const navigate = useNavigate();
   
   const [product, setProduct] = useState(null);
@@ -16,6 +18,9 @@ function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState('');
+  
+  // Check if product is in wishlist
+  const [inWishlist, setInWishlist] = useState(false);
   
   // Available sizes for clothing
   const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
@@ -55,6 +60,21 @@ function ProductDetail() {
     
     setLoading(false);
   }, [productId, category]);
+  
+  // Update wishlist status when product changes
+  useEffect(() => {
+    if (product) {
+      setInWishlist(isInWishlist(product.id));
+    }
+  }, [product, isInWishlist]);
+  
+  // Handle toggle wishlist
+  const handleToggleWishlist = () => {
+    if (product) {
+      toggleWishlist(product);
+      setInWishlist(!inWishlist);
+    }
+  };
   
   if (loading) {
     return (
@@ -128,12 +148,38 @@ function ProductDetail() {
         <div className="flex flex-col md:flex-row -mx-4">
           {/* Product Images */}
           <div className="md:flex-1 px-4 mb-8 md:mb-0">
-            <div className="h-96 md:h-[32rem] rounded-lg bg-black mb-4 overflow-hidden">
+            <div className="h-96 md:h-[32rem] rounded-lg bg-black mb-4 overflow-hidden relative">
               <img 
                 src={mainImage} 
                 alt={product.title} 
                 className="w-full h-full object-contain"
               />
+              
+              {/* Wishlist button */}
+              <button
+                onClick={handleToggleWishlist}
+                className={`absolute top-4 right-4 p-2.5 rounded-full z-20 transition-all duration-300 ${
+                  inWishlist 
+                    ? 'bg-[#AD2A2A] text-white' 
+                    : 'bg-black bg-opacity-70 text-white hover:bg-[#AD2A2A]'
+                }`}
+                aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6" 
+                  fill={inWishlist ? "currentColor" : "none"} 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={1.5} 
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
+                  />
+                </svg>
+              </button>
             </div>
             
             <div className="flex -mx-2 mb-4">
@@ -164,7 +210,36 @@ function ProductDetail() {
               )}
             </div>
             
-            <h2 className="text-4xl font-bold mb-2 text-[#FF0000]">{product.title}</h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-4xl font-bold mb-2 text-[#FF0000]">{product.title}</h2>
+              
+              {/* Wishlist button for mobile */}
+              <button
+                onClick={handleToggleWishlist}
+                className={`md:hidden p-2.5 rounded-full z-20 transition-all duration-300 ${
+                  inWishlist 
+                    ? 'bg-[#AD2A2A] text-white' 
+                    : 'bg-black bg-opacity-70 text-white hover:bg-[#AD2A2A]'
+                }`}
+                aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6" 
+                  fill={inWishlist ? "currentColor" : "none"} 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={1.5} 
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
+                  />
+                </svg>
+              </button>
+            </div>
+            
             <p className="text-3xl mb-6">₹{product.price}</p>
             
             <div className="mb-6">
@@ -248,6 +323,32 @@ function ProductDetail() {
                 Buy Now
               </button>
             </div>
+            
+            {/* Wishlist Button (standalone) */}
+            <button 
+              onClick={handleToggleWishlist}
+              className={`mt-4 w-full py-3 border rounded-sm flex items-center justify-center gap-2 transition-colors ${
+                inWishlist 
+                  ? 'bg-[#AD2A2A] border-[#AD2A2A] text-white' 
+                  : 'bg-transparent border-white text-white hover:bg-gray-900'
+              }`}
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="h-5 w-5" 
+                fill={inWishlist ? "currentColor" : "none"} 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={1.5} 
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" 
+                />
+              </svg>
+              {inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist'}
+            </button>
             
             {/* Additional Info */}
             <div className="mt-8 border-t border-gray-800 pt-8">
