@@ -7,6 +7,8 @@ function Allhoodie() {
   const [filteredProducts, setFilteredProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [showMobileFilter, setShowMobileFilter] = useState(false)
+  const [sortBy, setSortBy] = useState('price-asc')
+  const [selectedSize, setSelectedSize] = useState(null)
   
   // Extract unique categories and designs from products for filters
   const categories = [...new Set(Hoodieproducts.map(product => product.category))]
@@ -101,7 +103,7 @@ function Allhoodie() {
             </div>
           )}
         </div>
-      </div>
+      </div> 
     </div>
   )
 }

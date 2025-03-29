@@ -142,18 +142,8 @@ const ProductFilter = ({
   const activeFilterCount = Object.values(activeFilters).filter(val => val && val !== 'featured').length;
   
   return (
-    <div className="bg-[#0D0D0D] text-white border border-gray-800 rounded-lg p-4 sticky top-24">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold">Filters</h2>
-        {activeFilterCount > 0 && (
-          <button 
-            onClick={clearFilters}
-            className="text-sm text-gray-400 hover:text-white transition-colors"
-          >
-            Clear All ({activeFilterCount})
-          </button>
-        )}
-      </div>
+    <div className='bg-[#1E1E1E] p-4 rounded-lg'>
+      <h2 className='text-xl font-bold text-white mb-4'>Filters</h2>
       
       {/* Search input */}
       <div className="mb-6">
@@ -163,7 +153,7 @@ const ProductFilter = ({
             placeholder="Search products..."
             value={activeFilters.searchQuery}
             onChange={(e) => handleFilterChange('searchQuery', e.target.value)}
-            className="w-full bg-gray-900 border border-gray-700 rounded p-2 pl-10 focus:outline-none focus:border-[#AD2A2A]"
+            className="w-full bg-gray-900 border border-gray-700 rounded p-2 pl-10 focus:outline-none focus:border-[#D32F2F]"
           />
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
@@ -177,143 +167,95 @@ const ProductFilter = ({
         </div>
       </div>
       
-      {/* Categories filter */}
-      <div className="mb-4 border-b border-gray-800 pb-4">
-        <button 
-          className="flex justify-between items-center w-full text-left mb-2"
-          onClick={() => toggleSection('categories')}
-        >
-          <h3 className="text-lg font-medium">Categories</h3>
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className={`h-5 w-5 transition-transform duration-300 ${expanded.categories ? 'rotate-180' : ''}`} 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        
-        {expanded.categories && (
-          <div className="mt-2 space-y-2">
-            <label className="flex items-center space-x-2 cursor-pointer">
-              <input 
-                type="radio" 
-                name="category" 
-                value=""
-                checked={activeFilters.category === ''}
-                onChange={() => handleFilterChange('category', '')}
-                className="text-[#AD2A2A] rounded-full focus:ring-[#AD2A2A]"
+      {/* Category Filter */}
+      <div className='mb-6'>
+        <h3 className='text-lg font-semibold text-white mb-2'>Category</h3>
+        <div className='space-y-2'>
+          {categories.map((category) => (
+            <label key={category} className='flex items-center space-x-2 text-gray-300 hover:text-white cursor-pointer'>
+              <input
+                type='radio'
+                name='category'
+                value={category}
+                checked={activeFilters.category === category}
+                onChange={(e) => handleFilterChange('category', e.target.value)}
+                className='form-radio text-[#D32F2F]'
               />
-              <span>All Categories</span>
+              <span>{category}</span>
             </label>
-            
-            {categories.map(category => (
-              <label key={category} className="flex items-center space-x-2 cursor-pointer">
-                <input 
-                  type="radio" 
-                  name="category" 
-                  value={category}
-                  checked={activeFilters.category === category}
-                  onChange={() => handleFilterChange('category', category)}
-                  className="text-[#AD2A2A] rounded-full focus:ring-[#AD2A2A]"
-                />
-                <span>{category}</span>
-              </label>
-            ))}
-          </div>
-        )}
-      </div>
-      
-      {/* Price range filter */}
-      <div className="mb-4 border-b border-gray-800 pb-4">
-        <button 
-          className="flex justify-between items-center w-full text-left mb-2"
-          onClick={() => toggleSection('priceRange')}
-        >
-          <h3 className="text-lg font-medium">Price Range</h3>
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            className={`h-5 w-5 transition-transform duration-300 ${expanded.priceRange ? 'rotate-180' : ''}`} 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-        
-        {expanded.priceRange && (
-          <div className="mt-2 space-y-2">
-            {priceRanges.map(range => (
-              <label key={range.value} className="flex items-center space-x-2 cursor-pointer">
-                <input 
-                  type="radio" 
-                  name="priceRange" 
-                  value={range.value}
-                  checked={activeFilters.priceRange === range.value}
-                  onChange={() => handleFilterChange('priceRange', range.value)}
-                  className="text-[#AD2A2A] rounded-full focus:ring-[#AD2A2A]"
-                />
-                <span>{range.label}</span>
-              </label>
-            ))}
-          </div>
-        )}
-      </div>
-      
-      {/* Design filter */}
-      {designs.length > 0 && (
-        <div className="mb-4 border-b border-gray-800 pb-4">
-          <button 
-            className="flex justify-between items-center w-full text-left mb-2"
-            onClick={() => toggleSection('design')}
-          >
-            <h3 className="text-lg font-medium">Design</h3>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className={`h-5 w-5 transition-transform duration-300 ${expanded.design ? 'rotate-180' : ''}`} 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          
-          {expanded.design && (
-            <div className="mt-2 space-y-2">
-              <label className="flex items-center space-x-2 cursor-pointer">
-                <input 
-                  type="radio" 
-                  name="design" 
-                  value=""
-                  checked={activeFilters.design === ''}
-                  onChange={() => handleFilterChange('design', '')}
-                  className="text-[#AD2A2A] rounded-full focus:ring-[#AD2A2A]"
-                />
-                <span>All Designs</span>
-              </label>
-              
-              {designs.map(design => (
-                <label key={design} className="flex items-center space-x-2 cursor-pointer">
-                  <input 
-                    type="radio" 
-                    name="design" 
-                    value={design}
-                    checked={activeFilters.design === design}
-                    onChange={() => handleFilterChange('design', design)}
-                    className="text-[#AD2A2A] rounded-full focus:ring-[#AD2A2A]"
-                  />
-                  <span>{design}</span>
-                </label>
-              ))}
-            </div>
-          )}
+          ))}
         </div>
-      )}
-      
+      </div>
+
+      {/* Design Filter */}
+      <div className='mb-6'>
+        <h3 className='text-lg font-semibold text-white mb-2'>Design</h3>
+        <div className='space-y-2'>
+          {designs.map((design) => (
+            <label key={design} className='flex items-center space-x-2 text-gray-300 hover:text-white cursor-pointer'>
+              <input
+                type='checkbox'
+                checked={activeFilters.design === design}
+                onChange={(e) => handleFilterChange('design', e.target.value)}
+                className='form-checkbox text-[#D32F2F]'
+              />
+              <span>{design}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Price Range Filter */}
+      <div className='mb-6'>
+        <h3 className='text-lg font-semibold text-white mb-2'>Price Range</h3>
+        <div className='space-y-2'>
+          <label className='flex items-center space-x-2 text-gray-300 hover:text-white cursor-pointer'>
+            <input
+              type='radio'
+              name='priceRange'
+              value='all'
+              checked={activeFilters.priceRange === ''}
+              onChange={(e) => handleFilterChange('priceRange', e.target.value)}
+              className='form-radio text-[#D32F2F]'
+            />
+            <span>All Prices</span>
+          </label>
+          <label className='flex items-center space-x-2 text-gray-300 hover:text-white cursor-pointer'>
+            <input
+              type='radio'
+              name='priceRange'
+              value='under500'
+              checked={activeFilters.priceRange === '0-500'}
+              onChange={(e) => handleFilterChange('priceRange', e.target.value)}
+              className='form-radio text-[#D32F2F]'
+            />
+            <span>Under ₹500</span>
+          </label>
+          <label className='flex items-center space-x-2 text-gray-300 hover:text-white cursor-pointer'>
+            <input
+              type='radio'
+              name='priceRange'
+              value='500to1000'
+              checked={activeFilters.priceRange === '500-1000'}
+              onChange={(e) => handleFilterChange('priceRange', e.target.value)}
+              className='form-radio text-[#D32F2F]'
+            />
+            <span>₹500 - ₹1000</span>
+          </label>
+          <label className='flex items-center space-x-2 text-gray-300 hover:text-white cursor-pointer'>
+            <input
+              type='radio'
+              name='priceRange'
+              value='over1000'
+              checked={activeFilters.priceRange === '1000-999999'}
+              onChange={(e) => handleFilterChange('priceRange', e.target.value)}
+              className='form-radio text-[#D32F2F]'
+            />
+            <span>Over ₹1000</span>
+          </label>
+        </div>
+      </div>
+
       {/* Sort options */}
       <div className="mb-4">
         <button 
@@ -342,7 +284,7 @@ const ProductFilter = ({
                   value={option.value}
                   checked={activeFilters.sortBy === option.value}
                   onChange={() => handleFilterChange('sortBy', option.value)}
-                  className="text-[#AD2A2A] rounded-full focus:ring-[#AD2A2A]"
+                  className="text-[#D32F2F] rounded-full focus:ring-[#D32F2F]"
                 />
                 <span>{option.label}</span>
               </label>
@@ -351,43 +293,13 @@ const ProductFilter = ({
         )}
       </div>
       
-      {/* Mobile view - filter button and drawer (simplified) */}
-      <div className="md:hidden fixed bottom-4 right-4 z-30">
-        <button 
-          className="bg-[#AD2A2A] hover:bg-[#8B0000] text-white p-3 rounded-full shadow-lg flex items-center justify-center"
-          onClick={() => document.getElementById('mobile-filters').classList.toggle('hidden')}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-          </svg>
-        </button>
-      </div>
-      
-      <div id="mobile-filters" className="hidden md:hidden fixed inset-0 bg-black bg-opacity-75 z-40">
-        <div className="bg-[#0D0D0D] h-full w-3/4 max-w-xs p-4 ml-auto overflow-y-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-bold">Filters</h2>
-            <button 
-              onClick={() => document.getElementById('mobile-filters').classList.add('hidden')}
-              className="text-gray-400 hover:text-white"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          
-          {/* Mobile filter content - simplified version of desktop filters */}
-          {/* (simplified version would go here) */}
-          
-          <button 
-            className="w-full bg-[#AD2A2A] hover:bg-[#8B0000] text-white py-3 rounded mt-6"
-            onClick={() => document.getElementById('mobile-filters').classList.add('hidden')}
-          >
-            Apply Filters
-          </button>
-        </div>
-      </div>
+      {/* Clear Filters Button */}
+      <button
+        onClick={clearFilters}
+        className='w-full bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-4 py-2 rounded-sm transition-colors'
+      >
+        Clear Filters
+      </button>
     </div>
   );
 };

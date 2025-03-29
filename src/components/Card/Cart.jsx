@@ -24,14 +24,14 @@ function Cart() {
   };
 
   return (
-    <div className='bg-[#0D0D0D] max-w-7xl min-h-fit mx-auto p-4 sm:p-8 pt-28' style={{
+    <div className='bg-[#121212] max-w-7xl min-h-fit mx-auto p-4 sm:p-8 pt-28' style={{
       minHeight: 'calc(89vh)',
       fontFamily: 'Bebas Neue, sans-serif',
       }}>
-      <h1 className='mb-6 text-5xl md:text-6x text-white'>Your Cart</h1>
+      <h1 className='mb-6 text-5xl md:text-6x mt-20 text-white'>Your Cart</h1>
       
       {cart.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 px-4">
+        <div className="flex flex-col items-center justify-center w-full py-16 px-4">
           <div className="text-center mb-8">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 mx-auto text-gray-500 mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -41,7 +41,7 @@ function Cart() {
           </div>
           <Link 
             to="/" 
-            className="bg-[#AD2A2A] hover:bg-[#8B0000] text-white px-8 py-3 rounded-sm transition-colors duration-300 text-xl inline-flex items-center"
+            className="bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-8 py-3 rounded-sm transition-colors duration-300 text-xl inline-flex items-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
@@ -129,7 +129,7 @@ function Cart() {
                         <div className="mt-2 hidden sm:block">
                           <Link 
                             to={`/product/${product.category ? product.category.toLowerCase() : 'tshirt'}/${product.id}`}
-                            className="text-sm text-[#AD2A2A] hover:text-[#FF0000] transition-colors"
+                            className="text-sm text-[#D32F2F] hover:text-[#EF5350] transition-colors"
                           >
                             View Details
                           </Link>
@@ -137,14 +137,14 @@ function Cart() {
                         
                         {/* Mobile Price */}
                         <div className="mt-2 sm:hidden">
-                          <p className="text-lg text-[#FF0000]">₹{product.price}</p>
+                          <p className="text-lg text-[#D32F2F]">₹{product.price}</p>
                         </div>
                       </div>
                     </div>
                     
                     {/* Desktop Price - hidden on mobile */}
                     <div className='hidden sm:flex w-1/6 items-center justify-center'>
-                      <p className='text-lg text-[#FF0000]'>₹{product.price}</p>
+                      <p className='text-lg text-[#D32F2F]'>₹{product.price}</p>
                     </div>
                     
                     {/* Quantity Controls */}
@@ -177,7 +177,7 @@ function Cart() {
                     {/* Total Price */}
                     <div className='flex items-center justify-between px-4 py-3 sm:py-0 sm:w-1/6 sm:justify-center sm:px-0 bg-gray-900 sm:bg-transparent'>
                       <span className="sm:hidden">Total:</span>
-                      <p className='text-lg text-[#FF0000]'>₹{itemTotal}</p>
+                      <p className='text-lg text-[#D32F2F]'>₹{itemTotal}</p>
                       
                       {/* Desktop Remove Button - hidden on mobile */}
                       <button 
@@ -211,7 +211,7 @@ function Cart() {
                   <span>Free</span>
                 </div>
                 {getCartSubtotal() < 500 && (
-                  <div className="text-sm text-[#FF0000] mt-1">
+                  <div className="text-sm text-[#D32F2F] mt-1">
                     Add ₹{500 - getCartSubtotal()} more to get free shipping
                   </div>
                 )}
@@ -229,7 +229,7 @@ function Cart() {
               <div className="space-y-3">
                 <Link 
                   to="/buy" 
-                  className="block w-full bg-[#AD2A2A] hover:bg-[#8B0000] text-white text-center py-3 rounded-sm transition-colors"
+                  className="block w-full bg-[#D32F2F] hover:bg-[#B71C1C] text-white text-center py-3 rounded-sm transition-colors"
                 >
                   Proceed to Checkout
                 </Link>
@@ -272,7 +272,7 @@ function Cart() {
               </button>
               <button
                 onClick={handleClearCart}
-                className="flex-1 bg-[#AD2A2A] hover:bg-[#8B0000] text-white px-4 py-2 rounded-sm transition-colors"
+                className="flex-1 bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-4 py-2 rounded-sm transition-colors"
               >
                 Clear Cart
               </button>

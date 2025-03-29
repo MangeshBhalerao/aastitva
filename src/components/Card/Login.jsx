@@ -6,7 +6,7 @@ function Login({ onClose }) {
     <div className="fixed inset-0 flex text-white items-center justify-center bg-black bg-opacity-50 z-50" style={{ 
         fontFamily: 'Bebas Neue, sans-serif'
         }}>
-      <div className="bg-[#800E13] p-8 rounded-lg shadow-lg w-80 ring-1 ring-[#bbb9b9] md:w-1/3">
+      <div className="bg-[#1E1E1E] p-8 rounded-lg shadow-lg w-80 ring-1 ring-[#2D2D2D] md:w-1/3">
         <h2 className="text-4xl mb-4">Login</h2>
         <form>
           <div className="mb-4">
@@ -33,7 +33,7 @@ function Login({ onClose }) {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="bg-[#AD2A2A] hover:bg-[#822F2F] text-2xl text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-[#D32F2F] hover:bg-[#B71C1C] text-2xl text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
             >
               <img src={loginIcon} alt="Login" className="w-6 h-6" />
