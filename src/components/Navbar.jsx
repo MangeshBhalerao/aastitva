@@ -119,7 +119,7 @@ export default function Navbar() {
   return (
     <div>
       {/* Navbar */}
-      <nav className='fixed top-0 left-0 right-0 bg-[#0E0000] bg-opacity-80 backdrop-blur-sm text-2xl w-full h-20 text-white flex justify-between items-center border-b z-20' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+      <nav className='fixed top-0 left-0 right-0 bg-[#121212] bg-opacity-80 backdrop-blur-sm text-2xl w-full h-20 text-white flex justify-between items-center border-b z-20' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
         {/* Logo */}
         <RouterLink to="/" className='m-4 ' style={{ fontFamily: 'Yatra One, sans-serif' }}>अस्तित्व</RouterLink>
 
@@ -131,7 +131,7 @@ export default function Navbar() {
             <button 
               onClick={toggleDropdown}
               onMouseEnter={() => setIsDropdownOpen(true)}
-              className='flex items-center hover:cursor-pointer hover:text-[#FF0000] text-[#AD2A2A] transition-colors duration-300' 
+              className='flex items-center hover:cursor-pointer hover:text-[#EF5350] text-[#D32F2F] transition-colors duration-300' 
               aria-expanded={isDropdownOpen}
               aria-haspopup="true"
             >
@@ -150,7 +150,7 @@ export default function Navbar() {
             {/* Enhanced dropdown menu */}
             {isDropdownOpen && (
               <div 
-                className='absolute left-1/2 transform -translate-x-1/2 mt-2 w-[500px] rounded-md shadow-xl bg-[#0E0000] border border-gray-700 overflow-hidden'
+                className='absolute left-1/2 transform -translate-x-1/2 mt-2 w-[500px] rounded-md shadow-xl bg-[#1E1E1E] border border-gray-700 overflow-hidden'
                 onMouseLeave={() => setIsDropdownOpen(false)}
                 style={{
                   zIndex: 1000,
@@ -168,7 +168,7 @@ export default function Navbar() {
                         onClick={() => setIsDropdownOpen(false)}
                         onMouseEnter={() => setHoverCategory(category.id)}
                       >
-                        <div className={`flex items-center px-5 py-3 hover:bg-[#822F2F] transition-colors duration-200 ${hoverCategory === category.id ? 'bg-[#822F2F]' : ''}`}>
+                        <div className={`flex items-center px-5 py-3 hover:bg-[#2D2D2D] transition-colors duration-200 ${hoverCategory === category.id ? 'bg-[#2D2D2D]' : ''}`}>
                           {category.icon}
                           <span>{category.name}</span>
                         </div>
@@ -178,7 +178,7 @@ export default function Navbar() {
                     <div className='px-5 py-3 border-t border-gray-700'>
                       <RouterLink
                         to="/products/all"
-                        className='flex items-center text-[#AD2A2A] hover:text-[#FF0000] transition-colors'
+                        className='flex items-center text-[#D32F2F] hover:text-[#EF5350] transition-colors'
                         onClick={() => setIsDropdownOpen(false)}
                       >
                         <span>View All Products</span>
@@ -210,7 +210,7 @@ export default function Navbar() {
                           <p className='text-sm text-gray-300 mb-4'>Discover our latest {category.name.toLowerCase()} collection</p>
                           <RouterLink
                             to={category.route}
-                            className='inline-block bg-[#AD2A2A] hover:bg-[#8B0000] text-white px-5 py-2 rounded-sm transition-colors'
+                            className='inline-block bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-5 py-2 rounded-sm transition-colors'
                             onClick={() => setIsDropdownOpen(false)}
                           >
                             Shop Now
@@ -241,11 +241,11 @@ export default function Navbar() {
           </button>
 
           {/* Wishlist Button */}
-          <RouterLink to="/wishlist" className='relative hover:cursor-pointer hover:text-[#FF0000] transition-colors' aria-label="Wishlist">
+          <RouterLink to="/wishlist" className='relative hover:cursor-pointer hover:text-[#EF5350] transition-colors' aria-label="Wishlist">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               className="h-7 w-7" 
-              fill={wishlistCount > 0 ? '#AD2A2A' : 'none'} 
+              fill={wishlistCount > 0 ? '#D32F2F' : 'none'} 
               viewBox="0 0 24 24" 
               stroke="currentColor"
             >
@@ -257,7 +257,7 @@ export default function Navbar() {
               />
             </svg>
             {wishlistCount > 0 && (
-              <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{wishlistCount}</span>
+              <span className='absolute -top-2 -right-2 bg-[#D32F2F] text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{wishlistCount}</span>
             )}
           </RouterLink>
 
@@ -267,7 +267,7 @@ export default function Navbar() {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
+              <span className='absolute -top-2 -right-2 bg-[#D32F2F] text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
             </RouterLink>
           )}
           <img src={loginIcon} alt="Login" className='w-8 h-8 cursor-pointer' onClick={toggleLogin} />
@@ -291,7 +291,7 @@ export default function Navbar() {
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               className="h-6 w-6" 
-              fill={wishlistCount > 0 ? '#AD2A2A' : 'none'} 
+              fill={wishlistCount > 0 ? '#D32F2F' : 'none'} 
               viewBox="0 0 24 24" 
               stroke="currentColor"
             >
@@ -303,7 +303,7 @@ export default function Navbar() {
               />
             </svg>
             {wishlistCount > 0 && (
-              <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center'>{wishlistCount}</span>
+              <span className='absolute -top-2 -right-2 bg-[#D32F2F] text-white rounded-full text-xs w-4 h-4 flex items-center justify-center'>{wishlistCount}</span>
             )}
           </RouterLink>
 
@@ -313,7 +313,7 @@ export default function Navbar() {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              <span className='absolute -top-2 -right-2 bg-red-600 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
+              <span className='absolute -top-2 -right-2 bg-[#D32F2F] text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
             </RouterLink>
           )}
           <img src={loginIcon} alt="Login" className='w-7 h-7 cursor-pointer' onClick={toggleLogin} />
@@ -327,9 +327,9 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className='md:hidden bg-[#0E0000] text-white flex flex-col text-xl space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50 bg-opacity-80 backdrop-blur-xl' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+        <div className='md:hidden bg-[#1E1E1E] text-white flex flex-col text-xl space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50 bg-opacity-80 backdrop-blur-xl' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
           <div className='flex border-b justify-between '>
-              <div className='hover:cursor-pointer text-[#8B0000] text-4xl text-center  p-3 ml-12 '>
+              <div className='hover:cursor-pointer text-[#B71C1C] text-4xl text-center  p-3 ml-12 '>
                 CATEGORIES
               </div>
             <button onClick={toggleMenu} className='self-end mb-6 mr-5'>
@@ -345,7 +345,7 @@ export default function Navbar() {
                   <RouterLink 
                     key={category.id}
                     to={category.route} 
-                    className='flex items-center px-8 py-3 hover:bg-[#822F2F] rounded transition-colors' 
+                    className='flex items-center px-8 py-3 hover:bg-[#2D2D2D] rounded transition-colors' 
                     onClick={toggleMenu}
                   >
                     {category.icon}
