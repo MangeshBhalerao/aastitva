@@ -28,7 +28,7 @@ function Cart() {
       minHeight: 'calc(89vh)',
       fontFamily: 'Bebas Neue, sans-serif',
       }}>
-      <h1 className='mb-6 text-5xl md:text-6x mt-20 text-white'>Your Cart</h1>
+      <h1 className='mb-6 text-5xl md:text-6x lg:mt-20 text-white'>Your Cart</h1>
       
       {cart.length === 0 ? (
         <div className="flex flex-col items-center justify-center w-full py-16 px-4">
