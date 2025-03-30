@@ -24,7 +24,7 @@ function Cart() {
   };
 
   return (
-    <div className='bg-[#121212] max-w-7xl min-h-fit mx-auto p-4 sm:p-8 pt-28' style={{
+    <div className='bg-[#121212] w-full min-h-fit mx-auto p-4 sm:p-8 pt-28' style={{
       minHeight: 'calc(89vh)',
       fontFamily: 'Bebas Neue, sans-serif',
       }}>
@@ -36,8 +36,8 @@ function Cart() {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24 mx-auto text-gray-500 mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            <p className="text-2xl mb-4">Your cart is empty</p>
-            <p className="text-gray-400 mb-6">Looks like you haven't added any products to your cart yet.</p>
+            <p className="text-2xl mb-4 text-white">Your cart is empty</p>
+            <p className="text-[#D32F2F] mb-6">Looks like you haven't added any products to your cart yet.</p>
           </div>
           <Link 
             to="/" 
@@ -73,7 +73,7 @@ function Cart() {
                 const itemTotal = product.price * product.quantity;
                 
                 return (
-                  <div key={index} className='flex flex-col sm:flex-row bg-gray-400 bg-opacity-50 border border-gray-800 rounded-md overflow-hidden transition-all duration-300 hover:border-gray-700'>
+                  <div key={index} className='flex flex-col sm:flex-row bg-[#575B61] border border-gray-800 rounded-md overflow-hidden transition-all duration-300 hover:border-gray-700'>
                     <div className='sm:w-7/12 flex'>
                       {/* Product Image */}
                       <div className='w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0'>
@@ -175,10 +175,9 @@ function Cart() {
                     </div>
                     
                     {/* Total Price */}
-                    <div className='flex items-center justify-between px-4 py-3 sm:py-0 sm:w-1/6 sm:justify-center sm:px-0 bg-gray-900 sm:bg-transparent'>
-                      <span className="sm:hidden">Total:</span>
+                    <div className='flex items-center sm:border-none border-t justify-between px-4 py-3 sm:py-0 sm:w-1/6 sm:justify-center sm:px-0 bg-[#575B61] sm:bg-transparent'>
+                      <span className="sm:hidden ">Total:</span>
                       <p className='text-lg text-[#D32F2F]'>₹{itemTotal}</p>
-                      
                       {/* Desktop Remove Button - hidden on mobile */}
                       <button 
                         className='hidden sm:block text-gray-400 hover:text-white ml-4'
@@ -198,16 +197,16 @@ function Cart() {
           
           {/* Order Summary Section */}
           <div className="xl:w-1/3">
-            <div className="bg-gray-400 bg-opacity-50 border border-gray-800 rounded-md p-6 sticky top-24">
-              <h2 className="text-2xl font-bold mb-6 border-b border-gray-800 pb-4">Order Summary</h2>
+            <div className="bg-[#575B61] border border-gray-800 rounded-md p-6 sticky top-24">
+              <h2 className="text-3xl mb-6 border-b border-gray-800 pb-4">Order Summary</h2>
               
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Subtotal</span>
+                  <span className="text-white">Subtotal</span>
                   <span>₹{getCartSubtotal()}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Shipping</span>
+                  <span className="text-white">Shipping</span>
                   <span>Free</span>
                 </div>
                 {getCartSubtotal() < 500 && (
@@ -215,8 +214,8 @@ function Cart() {
                     Add ₹{500 - getCartSubtotal()} more to get free shipping
                   </div>
                 )}
-                <div className="border-t border-gray-800 pt-3 mt-3">
-                  <div className="flex justify-between font-bold text-xl">
+                <div className="text-white font-thin border-t border-gray-800 pt-3 mt-3">
+                  <div className="flex justify-between text-xl">
                     <span>Total</span>
                     <span>₹{getCartSubtotal()}</span>
                   </div>
@@ -239,17 +238,6 @@ function Cart() {
                 >
                   Continue Shopping
                 </Link>
-              </div>
-              
-              <div className="mt-8 text-sm text-gray-400">
-                <h3 className="font-medium text-white mb-2">Secure Checkout</h3>
-                <p>We accept all major credit cards and debit cards. Your payment information is secure.</p>
-                <div className="flex space-x-2 mt-4">
-                  {/* Payment method icons */}
-                  <div className="w-12 h-6 bg-gray-600 rounded"></div>
-                  <div className="w-12 h-6 bg-gray-600 rounded"></div>
-                  <div className="w-12 h-6 bg-gray-600 rounded"></div>
-                </div>
               </div>
             </div>
           </div>
