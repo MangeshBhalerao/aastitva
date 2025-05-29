@@ -406,7 +406,7 @@ function Buy() {
               <button 
                   className="w-full bg-[#AD2A2A] hover:bg-[#8B0000] text-white py-3 rounded-sm transition-colors"
                   onClick={handleOrderComplete}
-                >
+              >
                   Continue Shopping
                 </button>
             </div>

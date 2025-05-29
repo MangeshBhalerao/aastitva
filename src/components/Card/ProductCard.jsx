@@ -299,7 +299,7 @@ const ProductCard = ({ product }) => {
                       goToProductDetail();
                     }}
                     className='border border-gray-700 hover:border-white text-white py-3 rounded transition-colors duration-300'
-                  >
+        >
                     View Full Details
         </button>
       </div>

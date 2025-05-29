@@ -270,7 +270,26 @@ export default function Navbar() {
               <span className='absolute -top-2 -right-2 bg-[#D32F2F] text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
             </RouterLink>
           )}
-          <img src={loginIcon} alt="Login" className='w-8 h-8 cursor-pointer' onClick={toggleLogin} />
+          <button 
+            onClick={toggleLogin}
+            className='text-white hover:text-[#EF5350] transition-colors'
+            aria-label="Login"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-7 w-7" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={1.5} 
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" 
+              />
+            </svg>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -316,7 +335,26 @@ export default function Navbar() {
               <span className='absolute -top-2 -right-2 bg-[#D32F2F] text-white rounded-full text-xs w-5 h-5 flex items-center justify-center'>{cartCount}</span>
             </RouterLink>
           )}
-          <img src={loginIcon} alt="Login" className='w-7 h-7 cursor-pointer' onClick={toggleLogin} />
+          <button 
+            onClick={toggleLogin}
+            className='text-white hover:text-[#EF5350] transition-colors'
+            aria-label="Login"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-6 w-6" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={1.5} 
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" 
+              />
+            </svg>
+          </button>
           <button onClick={toggleMenu} className='focus:outline-none'>
             <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
               <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M4 6h16M4 12h16m-7 6h7'></path>
@@ -330,7 +368,7 @@ export default function Navbar() {
         <div className='md:hidden bg-[#1E1E1E] text-white flex flex-col text-xl space-y-4 py-4 fixed top-0 right-0 h-full w-64 z-50 bg-opacity-80 backdrop-blur-xl' style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
           <div className='flex border-b justify-between '>
               <div className='hover:cursor-pointer text-[#B71C1C] text-4xl text-center  p-3 ml-12 '>
-                CATEGORIES
+                MENU
               </div>
             <button onClick={toggleMenu} className='self-end mb-6 mr-5'>
               <svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
